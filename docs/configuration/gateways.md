@@ -31,7 +31,7 @@ routers:
 # 服务配置
 servers:
   - name: "mock-server"               # 服务名称，需要与routers中的server保持一致
-    namespace: "user-service"         # 服务命名空间，用于服务分组
+    # namespace字段已在v0.4.7版本中移除
     description: "Mock User Service"  # 服务描述
     allowedTools:                     # 允许使用的工具列表（为tools的子集）
       - "register_user"
@@ -243,7 +243,7 @@ cors:
 ```yaml
 servers:
   - name: "mock-server"               # 服务名称，需要与routers中的server保持一致
-    namespace: "user-service"         # 服务命名空间，用于服务分组
+    # namespace字段已在v0.4.7版本中移除
     description: "Mock User Service"  # 服务描述
     allowedTools:                     # 允许使用的工具列表（为tools的子集）
       - "register_user"
