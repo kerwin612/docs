@@ -31,7 +31,7 @@ routers:
 # Server Configuration
 servers:
   - name: "mock-server"               # Service name, must be consistent with the server in routers
-    namespace: "user-service"         # Service namespace, used for service grouping
+    # namespace field has been removed in v0.4.7
     description: "Mock User Service"  # Service description
     allowedTools:                     # List of allowed tools (subset of tools)
       - "register_user"
@@ -243,7 +243,7 @@ Server configuration is used to define service metadata, associated tool list, a
 ```yaml
 servers:
   - name: "mock-server"               # Service name, must be consistent with the server in routers
-    namespace: "user-service"         # Service namespace, used for service grouping
+    # namespace field has been removed in v0.4.7
     description: "Mock User Service"  # Service description
     allowedTools:                     # List of allowed tools (subset of tools)
       - "register_user"
@@ -656,4 +656,4 @@ routers:
       allowCredentials: true
 ```
 
-For MCP services, `Mcp-Session-Id` in request and response headers must be supported, otherwise the client cannot use it normally. 
+For MCP services, `Mcp-Session-Id` in request and response headers must be supported, otherwise the client cannot use it normally.  
