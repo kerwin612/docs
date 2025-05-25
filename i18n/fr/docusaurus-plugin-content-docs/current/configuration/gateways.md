@@ -31,7 +31,7 @@ routers:
 # Configuration du Serveur
 servers:
   - name: "mock-server"               # Nom du service, doit être cohérent avec le serveur dans routers
-    namespace: "user-service"         # Espace de noms du service, utilisé pour le regroupement des services
+    # Le champ namespace a été supprimé dans la version v0.4.7
     description: "Mock User Service"  # Description du service
     allowedTools:                     # Liste des outils autorisés (sous-ensemble d'outils)
       - "register_user"
@@ -243,7 +243,7 @@ La configuration du serveur est utilisée pour définir les métadonnées du ser
 ```yaml
 servers:
   - name: "mock-server"               # Nom du service, doit être cohérent avec le serveur dans routers
-    namespace: "user-service"         # Espace de noms du service, utilisé pour le regroupement des services
+    # Le champ namespace a été supprimé dans la version v0.4.7
     description: "Mock User Service"  # Description du service
     allowedTools:                     # Liste des outils autorisés (sous-ensemble d'outils)
       - "register_user"
@@ -656,4 +656,4 @@ routers:
       allowCredentials: true
 ```
 
-Pour les services MCP, `Mcp-Session-Id` dans les en-têtes de requête et de réponse doit être pris en charge, sinon le client ne peut pas l'utiliser normalement. 
+Pour les services MCP, `Mcp-Session-Id` dans les en-têtes de requête et de réponse doit être pris en charge, sinon le client ne peut pas l'utiliser normalement.  
