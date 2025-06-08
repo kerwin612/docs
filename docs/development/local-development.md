@@ -84,7 +84,9 @@ apiserver 默认会在 `http://localhost:5234` 上启动。
 go run cmd/mock-server/main.go
 ```
 
-mock-server 默认会在 `http://localhost:5235` 上启动。
+mock-server 默认会在 `http://localhost:5236` 上启动。
+
+mock-server-sse 默认会在 `http://localhost:5237` 上启动。
 
 #### 4.4 启动 web 前端
 
@@ -92,9 +94,9 @@ mock-server 默认会在 `http://localhost:5235` 上启动。
 npm run dev
 ```
 
-web 前端默认会在 `http://localhost:5236` 上启动。
+web 终端运行命令后，会显示访问的地址。
 
-此时你就可以在浏览器中访问 http://localhost:5236 来访问管理界面了，默认用户名和密码根据你环境变量（根目录的.env文件）来决定，环境变量是`SUPER_ADMIN_USERNAME`和`SUPER_ADMIN_PASSWORD`，登录后可以在管理界面中修改用户名和密码
+此时你就可以在浏览器中访问终端显示的地址来访问管理界面了，默认用户名和密码根据你环境变量（根目录的.env文件）来决定，环境变量是`SUPER_ADMIN_USERNAME`和`SUPER_ADMIN_PASSWORD`，登录后可以在管理界面中修改用户名和密码
 
 
 ## 常见问题
