@@ -1,26 +1,26 @@
-# Despliegue con Docker
+# Docker
 
-## Descripción de las imágenes
+## Descripción general de imágenes
 
-MCP Gateway ofrece dos métodos de despliegue:
-1. Despliegue All-in-One: Todos los servicios empaquetados en un solo contenedor, adecuado para despliegues en una sola máquina o uso local
-2. Despliegue multi-contenedor: Cada servicio desplegado de forma independiente, adecuado para entornos de producción o despliegues en clúster
+MCP Gateway ofrece dos métodos de implementación:
+1. **Implementación All-in-One**: Todos los servicios se empaquetan en un solo contenedor, adecuado para implementaciones locales o de nodo único.
+2. **Implementación multi-contenedor**: Cada servicio se implementa por separado, adecuado para entornos de producción o clúster.
 
 ### Registros de imágenes
 
-Las imágenes se publican en los siguientes tres registros:
+Las imágenes se publican en los siguientes registros:
 - Docker Hub: `docker.io/ifuryst/mcp-gateway-*`
 - GitHub Container Registry: `ghcr.io/mcp-ecosystem/mcp-gateway/*`
-- Aliyun Container Registry: `registry.ap-southeast-1.aliyuncs.com/mcp-ecosystem/mcp-gateway-*`
+- Alibaba Cloud Container Registry: `registry.ap-southeast-1.aliyuncs.com/mcp-ecosystem/mcp-gateway-*`
 
-*ghcr admite directorios multinivel, por lo que la organización es más clara, mientras que los registros de Docker y Aliyun solo permiten un nivel de directorio, por lo que los nombres de las imágenes se concatenan con -*
+*GitHub Container Registry admite directorios multinivel para una organización más clara, mientras que Docker Hub y Alibaba Cloud utilizan una nomenclatura plana con guiones.*
 
 ### Etiquetas de imágenes
 
 - `latest`: Última versión
-- `vX.Y.Z`: Número de versión específico
+- `vX.Y.Z`: Versión específica
 
-> ⚡ **Nota**: ¡MCP Gateway está actualmente en rápida iteración! Por lo tanto, se recomienda desplegar usando números de versión para mayor confiabilidad
+> ⚡ **Nota**: ¡MCP Gateway está en desarrollo rápido! Se recomienda usar etiquetas de versión específicas para implementaciones más confiables.
 
 ### Imágenes disponibles
 
@@ -45,43 +45,43 @@ docker pull docker.io/ifuryst/mcp-gateway-mock-server:latest
 docker pull ghcr.io/mcp-ecosystem/mcp-gateway/mock-server:latest
 docker pull registry.ap-southeast-1.aliyuncs.com/mcp-ecosystem/mcp-gateway-mock-server:latest
 
-# Frontend web
+# Web Frontend
 docker pull docker.io/ifuryst/mcp-gateway-web:latest
 docker pull ghcr.io/mcp-ecosystem/mcp-gateway/web:latest
 docker pull registry.ap-southeast-1.aliyuncs.com/mcp-ecosystem/mcp-gateway-web:latest
 ```
 
-## Despliegue
+## Implementación
 
-### Despliegue All-in-One
+### Implementación All-in-One
 
-El despliegue All-in-One empaqueta todos los servicios en un solo contenedor, adecuado para despliegues en una sola máquina o uso local. Incluye los siguientes servicios:
-- **API Server**: Backend de la plataforma de administración, se puede entender como el plano de control
-- **MCP Gateway**: Servicio principal, responsable del servicio de gateway real, se puede entender como el plano de datos
-- **Mock User Service**: Servicio de usuario simulado, proporciona un servicio de usuario para pruebas (sus servicios API existentes pueden ser similares a este)
-- **Frontend web**: Frontend de la plataforma de administración, proporciona una interfaz de administración visual
-- **Nginx**: Proxy inverso para los otros servicios
+La implementación All-in-One empaqueta todos los servicios en un solo contenedor, ideal para implementaciones de nodo único o locales. Incluye los siguientes servicios:
+- **API Server**: Backend de gestión (Plano de control)
+- **MCP Gateway**: Servicio principal que maneja el tráfico de la puerta de enlace (Plano de datos)
+- **Mock User Service**: Servicio de usuario simulado para pruebas (puede ser reemplazado por su servicio API existente)
+- **Web Frontend**: Interfaz de gestión basada en web
+- **Nginx**: Proxy inverso para servicios internos
 
-Utiliza Supervisor para gestionar los procesos de servicio. Todos los registros se envían a stdout
+Los procesos se gestionan con Supervisor, y todos los registros se envían a stdout.
 
-#### Descripción de puertos
+#### Puertos
 
-- `8080`: Puerto de la interfaz web
-- `5234`: Puerto del API Server
-- `5235`: Puerto del MCP Gateway
-- `5335`: Puerto de administración del MCP Gateway (alberga interfaces internas como reload, no exponer en producción)
-- `5236`: Puerto del Mock User Service
+- `8080`: Interfaz web
+- `5234`: API Server
+- `5235`: MCP Gateway
+- `5335`: MCP Gateway Admin (puntos finales internos como reload; NO exponer en producción)
+- `5236`: Mock User Service
 
 #### Persistencia de datos
 
 Se recomienda montar los siguientes directorios:
-- `/app/configs`: Directorio de archivos de configuración
-- `/app/data`: Directorio de datos
+- `/app/configs`: Archivos de configuración
+- `/app/data`: Almacenamiento de datos
 - `/app/.env`: Archivo de variables de entorno
 
-#### Comandos de ejemplo
+#### Ejemplos de comandos
 
-1. Crear los directorios necesarios y descargar los archivos de configuración:
+1. Cree los directorios necesarios y descargue los archivos de configuración:
 
 ```bash
 mkdir -p mcp-gateway/{configs,data}
@@ -91,17 +91,17 @@ curl -sL https://raw.githubusercontent.com/mcp-ecosystem/mcp-gateway/refs/heads/
 curl -sL https://raw.githubusercontent.com/mcp-ecosystem/mcp-gateway/refs/heads/main/.env.example -o .env.allinone
 ```
 
-> Los LLMs se pueden cambiar según sea necesario, por ejemplo, a Qwen (necesita ser compatible con OpenAI)
+> Puede reemplazar el LLM predeterminado si es necesario (debe ser compatible con OpenAI), por ejemplo, usar Qwen:
 > ```bash
 > OPENAI_BASE_URL=https://dashscope.aliyuncs.com/compatible-mode/v1/
 > OPENAI_API_KEY=sk-yourkeyhere
 > OPENAI_MODEL=qwen-turbo
 > ```
 
-2. Ejecutar MCP Gateway usando Docker:
+2. Ejecute MCP Gateway con Docker:
 
 ```bash
-# Usar imagen de Aliyun Container Registry (recomendado para servidores o dispositivos en China continental)
+# Usar el registro de Alibaba Cloud (recomendado para servidores/dispositivos en China)
 docker run -d \
            --name mcp-gateway \
            -p 8080:80 \
@@ -116,7 +116,7 @@ docker run -d \
            --restart unless-stopped \
            registry.ap-southeast-1.aliyuncs.com/mcp-ecosystem/mcp-gateway-allinone:latest
 
-# Usar imagen de GitHub Container Registry
+# Usar GitHub Container Registry
 docker run -d \
            --name mcp-gateway \
            -p 8080:80 \
@@ -132,9 +132,9 @@ docker run -d \
            ghcr.io/mcp-ecosystem/mcp-gateway/allinone:latest
 ```
 
-#### Consideraciones
+#### Notas
 
-1. Asegurarse de que los archivos de configuración y variables de entorno estén correctamente configurados
-2. Se recomienda usar etiquetas de versión en lugar de latest
-3. Para entornos de producción, se recomienda configurar límites de recursos apropiados
-4. Asegurarse de que los directorios montados tengan los permisos correctos 
+1. Asegúrese de que los archivos de configuración y el archivo de entorno estén configurados correctamente.
+2. Se recomienda usar una etiqueta de versión específica en lugar de `latest`.
+3. Establezca límites de recursos apropiados para implementaciones en producción.
+4. Asegúrese de que los directorios montados tengan los permisos adecuados. 

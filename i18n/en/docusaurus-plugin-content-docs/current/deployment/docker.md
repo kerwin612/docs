@@ -1,4 +1,4 @@
-# Docker
+# Docker Deployment
 
 ## Image Overview
 
@@ -138,3 +138,114 @@ docker run -d \
 2. It is recommended to use a specific version tag instead of `latest`.
 3. Set appropriate resource limits for production deployments.
 4. Ensure mounted directories have proper permissions.
+
+### Multi-Container Deployment
+
+Multiple services deployed independently, suitable for production or cluster environments. Includes the following services:
+- **mcp-gateway**: Core service handling gateway traffic (Data Plane)
+- **web (includes apiserver)**: Management platform and backend (Control Plane)
+- **mock-server**: Mock service for testing
+
+Ideal for production environments, allowing flexible deployment, especially for `mcp-gateway` which can be deployed with multiple replicas for high availability.
+
+The following example demonstrates deployment using Docker Compose, which:
+1. Uses PostgreSQL for storing sessions, proxy configurations, and other information
+2. Implements multi-container deployment with each service in a separate container
+3. Uses Redis for configuration update notifications, OAuth storage, and other purposes
+
+General steps:
+1. Configure [docker-compose.yaml](https://raw.githubusercontent.com/mcp-ecosystem/mcp-gateway/refs/heads/main/deploy/docker/multi/docker-compose.yml)
+2. Copy and configure .env from [.env.example](https://raw.githubusercontent.com/mcp-ecosystem/mcp-gateway/refs/heads/main/.env.example)
+3. Run `docker compose up -d`
+4. Configure `Nginx` or other load balancers as needed
+
+#### docker-compose.yaml
+Notes:
+1. Modify the database and Redis credentials
+2. Adjust exposed ports as needed, noting that the current configuration may expose ports to the public network
+
+```yaml
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: "**********"
+      POSTGRES_DB: mcp-gateway
+    volumes:
+      - ./db:/var/lib/postgresql/data
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+    restart: always
+
+  redis:
+    image: redis:7
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./redis:/data
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+    command: redis-server --appendonly yes --save "900 1" --save "300 10" --save "60 10000" --requirepass "**********"
+    restart: always
+
+  web:
+    image: ghcr.io/mcp-ecosystem/mcp-gateway/web:latest
+    ports:
+      - "8080:80"
+      - "5234:5234"
+    environment:
+      - ENV=production
+      - TZ=Asia/Shanghai
+    volumes:
+      - ./.env:/app/.env
+      - ./data:/app/data
+    depends_on:
+      - postgres
+      - mcp-gateway
+      - mock-server
+    restart: always
+
+  mcp-gateway:
+    image: ghcr.io/mcp-ecosystem/mcp-gateway/mcp-gateway:latest
+    ports:
+      - "5235:5235"
+    environment:
+      - ENV=production
+      - TZ=Asia/Shanghai
+    volumes:
+      - ./.env:/app/.env
+      - ./data:/app/data
+    depends_on:
+      - postgres
+    restart: always
+
+  mock-server:
+    image: ghcr.io/mcp-ecosystem/mcp-gateway/mock-server:latest
+    ports:
+      - "5236:5236"
+    environment:
+      - ENV=production
+      - TZ=Asia/Shanghai
+    volumes:
+      - ./.env:/app/.env
+    depends_on:
+      - postgres
+    restart: always
+```
+
+#### .env
+The following is just an example configuration. You must adjust the configuration according to your environment and requirements!
+1. Modify the database and Redis credentials
+
+```bash
+# Logger configuration for apiserver
+APISERVER_LOGGER_LEVEL=info
+APISERVER_LOGGER_FORMAT=json
+APISERVER_LOGGER_OUTPUT=stdout
+APISERVER_LOGGER_FILE_PATH=/var/log/mcp-gateway/apiserver.log
+APISERVER_LOGGER_MAX_SIZE=100
+APISERVER_LOGGER_MAX_BACKUPS=3
+APISERVER_LOGGER_MAX_AGE=7
+APISERVER_LOGGER_COMPRESS=true
+```

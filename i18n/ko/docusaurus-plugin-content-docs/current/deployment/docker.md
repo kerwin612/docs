@@ -1,26 +1,26 @@
-# Docker 배포
+# Docker
 
-## 이미지 설명
+## 이미지 개요
 
-MCP Gateway는 두 가지 배포 방식을 제공합니다:
-1. All-in-One 배포: 모든 서비스가 하나의 컨테이너에 패키징되어 있어 단일 서버 배포나 로컬 사용에 적합합니다
-2. 다중 컨테이너 배포: 각 서비스가 독립적으로 배포되어 프로덕션 환경이나 클러스터 배포에 적합합니다
+MCP Gateway는 두 가지 배포 방법을 제공합니다:
+1. **All-in-One 배포**: 모든 서비스를 단일 컨테이너에 패키징하여 로컬 또는 단일 노드 배포에 적합합니다.
+2. **멀티 컨테이너 배포**: 각 서비스를 개별적으로 배포하여 프로덕션 또는 클러스터 환경에 적합합니다.
 
-### 이미지 레지스트리
+### 이미지 저장소
 
-이미지는 다음 세 개의 레지스트리에 게시됩니다:
+이미지는 다음 레지스트리에 게시됩니다:
 - Docker Hub: `docker.io/ifuryst/mcp-gateway-*`
 - GitHub Container Registry: `ghcr.io/mcp-ecosystem/mcp-gateway/*`
 - Alibaba Cloud Container Registry: `registry.ap-southeast-1.aliyuncs.com/mcp-ecosystem/mcp-gateway-*`
 
-*ghcr는 다중 디렉토리를 지원하므로 구조가 더 명확하지만, Docker와 Alibaba Cloud 레지스트리는 단일 디렉토리만 지원하므로 이미지 이름에 하이픈(-)을 사용합니다*
+*GitHub Container Registry는 더 명확한 구성을 위해 다중 레벨 디렉토리를 지원하지만, Docker Hub와 Alibaba Cloud 레지스트리는 하이픈을 사용한 플랫한 명명 규칙을 사용합니다.*
 
 ### 이미지 태그
 
 - `latest`: 최신 버전
-- `vX.Y.Z`: 특정 버전 번호
+- `vX.Y.Z`: 특정 버전
 
-> ⚡ **참고**: 현재 MCP Gateway는 빠르게 개발 중입니다! 따라서 버전 번호를 사용한 배포가 더 안정적입니다
+> ⚡ **참고**: MCP Gateway는 빠르게 개발 중입니다! 더 안정적인 배포를 위해 특정 버전 태그를 사용하는 것이 좋습니다.
 
 ### 사용 가능한 이미지
 
@@ -45,7 +45,7 @@ docker pull docker.io/ifuryst/mcp-gateway-mock-server:latest
 docker pull ghcr.io/mcp-ecosystem/mcp-gateway/mock-server:latest
 docker pull registry.ap-southeast-1.aliyuncs.com/mcp-ecosystem/mcp-gateway-mock-server:latest
 
-# Web 프론트엔드
+# Web Frontend
 docker pull docker.io/ifuryst/mcp-gateway-web:latest
 docker pull ghcr.io/mcp-ecosystem/mcp-gateway/web:latest
 docker pull registry.ap-southeast-1.aliyuncs.com/mcp-ecosystem/mcp-gateway-web:latest
@@ -55,33 +55,33 @@ docker pull registry.ap-southeast-1.aliyuncs.com/mcp-ecosystem/mcp-gateway-web:l
 
 ### All-in-One 배포
 
-All-in-One 배포는 모든 서비스를 하나의 컨테이너에 패키징하여 단일 서버 배포나 로컬 사용에 적합합니다. 다음 서비스들이 포함됩니다:
-- **API Server**: 관리 플랫폼 백엔드, 제어 평면으로 이해할 수 있습니다
-- **MCP Gateway**: 핵심 서비스, 실제 게이트웨이 서비스를 담당하는 데이터 평면입니다
-- **Mock User Service**: 사용자 서비스를 시뮬레이션하는 테스트용 서비스입니다 (기존 API 서비스가 이와 유사할 수 있습니다)
-- **Web 프론트엔드**: 관리 플랫폼 프론트엔드, 시각적 관리 인터페이스를 제공합니다
-- **Nginx**: 다른 서비스들을 위한 리버스 프록시입니다
+All-in-One 배포는 모든 서비스를 단일 컨테이너에 패키징하여 단일 노드 또는 로컬 배포에 이상적입니다. 다음 서비스가 포함됩니다:
+- **API Server**: 관리 백엔드 (컨트롤 플레인)
+- **MCP Gateway**: 게이트웨이 트래픽을 처리하는 핵심 서비스 (데이터 플레인)
+- **Mock User Service**: 테스트를 위한 시뮬레이션된 사용자 서비스 (실제 기존 API 서비스로 대체 가능)
+- **Web Frontend**: 웹 기반 관리 인터페이스
+- **Nginx**: 내부 서비스용 리버스 프록시
 
-Supervisor를 사용하여 서비스 프로세스를 관리합니다. 모든 로그는 stdout으로 출력됩니다
+프로세스는 Supervisor로 관리되며, 모든 로그는 stdout으로 출력됩니다.
 
-#### 포트 설명
+#### 포트
 
-- `8080`: Web 인터페이스 포트
-- `5234`: API Server 포트
-- `5235`: MCP Gateway 포트
-- `5335`: MCP Gateway 관리 포트 (reload와 같은 내부 인터페이스를 처리하며, 프로덕션 환경에서는 외부에 노출하지 마세요)
-- `5236`: Mock User Service 포트
+- `8080`: Web UI
+- `5234`: API Server
+- `5235`: MCP Gateway
+- `5335`: MCP Gateway Admin (reload 등의 내부 엔드포인트, 프로덕션 환경에서는 노출하지 마세요)
+- `5236`: Mock User Service
 
 #### 데이터 지속성
 
-다음 디렉토리를 마운트하는 것을 권장합니다:
-- `/app/configs`: 설정 파일 디렉토리
-- `/app/data`: 데이터 디렉토리
+다음 디렉토리를 마운트하는 것이 좋습니다:
+- `/app/configs`: 설정 파일
+- `/app/data`: 데이터 저장소
 - `/app/.env`: 환경 변수 파일
 
-#### 예제 명령어
+#### 명령어 예시
 
-1. 필요한 디렉토리를 생성하고 설정 파일을 다운로드합니다:
+1. 필요한 디렉토리를 생성하고 설정 파일을 다운로드:
 
 ```bash
 mkdir -p mcp-gateway/{configs,data}
@@ -91,17 +91,17 @@ curl -sL https://raw.githubusercontent.com/mcp-ecosystem/mcp-gateway/refs/heads/
 curl -sL https://raw.githubusercontent.com/mcp-ecosystem/mcp-gateway/refs/heads/main/.env.example -o .env.allinone
 ```
 
-> 필요한 경우 LLM을 교체할 수 있습니다. 예를 들어, Qwen으로 전환하는 경우 (OpenAI 호환 필요):
+> 필요에 따라 기본 LLM을 교체할 수 있습니다 (OpenAI 호환 필요), 예: Qwen 사용:
 > ```bash
 > OPENAI_BASE_URL=https://dashscope.aliyuncs.com/compatible-mode/v1/
 > OPENAI_API_KEY=sk-yourkeyhere
 > OPENAI_MODEL=qwen-turbo
 > ```
 
-2. Docker로 MCP Gateway를 실행합니다:
+2. Docker로 MCP Gateway 실행:
 
 ```bash
-# Alibaba Cloud Container Registry 이미지 사용 (중국 본토의 서버나 장치에 권장)
+# Alibaba Cloud 레지스트리 사용 (중국 내 서버/장치에 권장)
 docker run -d \
            --name mcp-gateway \
            -p 8080:80 \
@@ -116,7 +116,7 @@ docker run -d \
            --restart unless-stopped \
            registry.ap-southeast-1.aliyuncs.com/mcp-ecosystem/mcp-gateway-allinone:latest
 
-# GitHub Container Registry 이미지 사용
+# GitHub Container Registry 사용
 docker run -d \
            --name mcp-gateway \
            -p 8080:80 \
@@ -134,7 +134,7 @@ docker run -d \
 
 #### 주의사항
 
-1. 설정 파일과 환경 변수 파일이 올바르게 구성되어 있는지 확인하세요
-2. latest 태그보다는 버전 번호 태그를 사용하는 것이 좋습니다
-3. 프로덕션 환경에서는 적절한 리소스 제한을 설정하는 것이 좋습니다
-4. 마운트된 디렉토리에 올바른 권한이 있는지 확인하세요 
+1. 설정 파일과 환경 파일이 올바르게 설정되어 있는지 확인하세요.
+2. `latest` 대신 특정 버전 태그를 사용하는 것이 좋습니다.
+3. 프로덕션 배포에는 적절한 리소스 제한을 설정하세요.
+4. 마운트된 디렉토리에 적절한 권한이 있는지 확인하세요 

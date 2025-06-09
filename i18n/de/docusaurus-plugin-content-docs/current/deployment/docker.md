@@ -3,24 +3,24 @@
 ## Image-Übersicht
 
 MCP Gateway bietet zwei Bereitstellungsmethoden:
-1. **All-in-One-Bereitstellung**: Alle Dienste sind in einem einzigen Container verpackt, geeignet für lokale oder Einzelknoten-Bereitstellungen.
+1. **All-in-One-Bereitstellung**: Alle Dienste werden in einem einzelnen Container gepackt, geeignet für lokale oder Einzelknoten-Bereitstellungen.
 2. **Multi-Container-Bereitstellung**: Jeder Dienst wird separat bereitgestellt, geeignet für Produktions- oder Cluster-Umgebungen.
 
-### Image-Repositories
+### Image-Registrys
 
-Images werden in den folgenden Registries veröffentlicht:
+Die Images werden in folgenden Registrys veröffentlicht:
 - Docker Hub: `docker.io/ifuryst/mcp-gateway-*`
 - GitHub Container Registry: `ghcr.io/mcp-ecosystem/mcp-gateway/*`
 - Alibaba Cloud Container Registry: `registry.ap-southeast-1.aliyuncs.com/mcp-ecosystem/mcp-gateway-*`
 
-*GitHub Container Registry unterstützt mehrstufige Verzeichnisse für eine übersichtlichere Organisation, während Docker Hub und Alibaba Cloud Registries flache Benennung mit Bindestrichen verwenden.*
+*Die GitHub Container Registry unterstützt mehrstufige Verzeichnisse für eine klarere Organisation, während Docker Hub und Alibaba Cloud Registrys flache Benennung mit Bindestrichen verwenden.*
 
 ### Image-Tags
 
 - `latest`: Neueste Version
 - `vX.Y.Z`: Spezifische Version
 
-> ⚡ **Hinweis**: MCP Gateway befindet sich in schneller Entwicklung! Es wird empfohlen, spezifische Versions-Tags für zuverlässigere Bereitstellungen zu verwenden.
+> ⚡ **Hinweis**: MCP Gateway befindet sich in rascher Entwicklung! Es wird empfohlen, spezifische Versions-Tags für zuverlässigere Bereitstellungen zu verwenden.
 
 ### Verfügbare Images
 
@@ -30,7 +30,7 @@ docker pull docker.io/ifuryst/mcp-gateway-allinone:latest
 docker pull ghcr.io/mcp-ecosystem/mcp-gateway/allinone:latest
 docker pull registry.ap-southeast-1.aliyuncs.com/mcp-ecosystem/mcp-gateway-allinone:latest
 
-# API-Server
+# API Server
 docker pull docker.io/ifuryst/mcp-gateway-apiserver:latest
 docker pull ghcr.io/mcp-ecosystem/mcp-gateway/apiserver:latest
 docker pull registry.ap-southeast-1.aliyuncs.com/mcp-ecosystem/mcp-gateway-apiserver:latest
@@ -40,12 +40,12 @@ docker pull docker.io/ifuryst/mcp-gateway-mcp-gateway:latest
 docker pull ghcr.io/mcp-ecosystem/mcp-gateway/mcp-gateway:latest
 docker pull registry.ap-southeast-1.aliyuncs.com/mcp-ecosystem/mcp-gateway-mcp-gateway:latest
 
-# Mock-Benutzerdienst
+# Mock User Service
 docker pull docker.io/ifuryst/mcp-gateway-mock-server:latest
 docker pull ghcr.io/mcp-ecosystem/mcp-gateway/mock-server:latest
 docker pull registry.ap-southeast-1.aliyuncs.com/mcp-ecosystem/mcp-gateway-mock-server:latest
 
-# Web-Frontend
+# Web Frontend
 docker pull docker.io/ifuryst/mcp-gateway-web:latest
 docker pull ghcr.io/mcp-ecosystem/mcp-gateway/web:latest
 docker pull registry.ap-southeast-1.aliyuncs.com/mcp-ecosystem/mcp-gateway-web:latest
@@ -55,33 +55,33 @@ docker pull registry.ap-southeast-1.aliyuncs.com/mcp-ecosystem/mcp-gateway-web:l
 
 ### All-in-One-Bereitstellung
 
-Die All-in-One-Bereitstellung verpackt alle Dienste in einem einzigen Container, ideal für Einzelknoten- oder lokale Bereitstellungen. Sie enthält die folgenden Dienste:
-- **API-Server**: Management-Backend (Kontrollebene)
-- **MCP Gateway**: Kerndienst für die Verarbeitung des Gateway-Verkehrs (Datenebene)
-- **Mock-Benutzerdienst**: Simulierter Benutzerdienst für Tests (Sie können ihn durch Ihren tatsächlichen bestehenden API-Dienst ersetzen)
-- **Web-Frontend**: Webbasierte Verwaltungsoberfläche
-- **Nginx**: Reverse Proxy für interne Dienste
+Die All-in-One-Bereitstellung packt alle Dienste in einen einzelnen Container, ideal für Einzelknoten- oder lokale Bereitstellungen. Sie umfasst folgende Dienste:
+- **API Server**: Verwaltungs-Backend (Control Plane)
+- **MCP Gateway**: Kerndienst für die Gateway-Verkehrsverarbeitung (Data Plane)
+- **Mock User Service**: Simulierter Benutzerdienst für Tests (kann durch Ihren tatsächlichen API-Dienst ersetzt werden)
+- **Web Frontend**: Web-basierte Verwaltungsoberfläche
+- **Nginx**: Reverse-Proxy für interne Dienste
 
-Prozesse werden mit Supervisor verwaltet, und alle Logs werden nach stdout ausgegeben.
+Die Prozesse werden mit Supervisor verwaltet, und alle Logs werden auf stdout ausgegeben.
 
 #### Ports
 
-- `8080`: Web-UI
-- `5234`: API-Server
+- `8080`: Web UI
+- `5234`: API Server
 - `5235`: MCP Gateway
-- `5335`: MCP Gateway Admin (interne Endpunkte wie Reload; NICHT in Produktion exponieren)
-- `5236`: Mock-Benutzerdienst
+- `5335`: MCP Gateway Admin (interne Endpunkte wie reload; NICHT in Produktionsumgebungen freigeben)
+- `5236`: Mock User Service
 
 #### Datenpersistenz
 
-Es wird empfohlen, die folgenden Verzeichnisse zu mounten:
+Es wird empfohlen, folgende Verzeichnisse einzubinden:
 - `/app/configs`: Konfigurationsdateien
-- `/app/data`: Datenspeicherung
+- `/app/data`: Datenspeicher
 - `/app/.env`: Umgebungsvariablendatei
 
 #### Beispielbefehle
 
-1. Erstellen Sie die notwendigen Verzeichnisse und laden Sie Konfigurationsdateien herunter:
+1. Erstellen Sie die notwendigen Verzeichnisse und laden Sie die Konfigurationsdateien herunter:
 
 ```bash
 mkdir -p mcp-gateway/{configs,data}
@@ -101,7 +101,7 @@ curl -sL https://raw.githubusercontent.com/mcp-ecosystem/mcp-gateway/refs/heads/
 2. Führen Sie MCP Gateway mit Docker aus:
 
 ```bash
-# Verwendung der Alibaba Cloud Registry (empfohlen für Server/Geräte in China)
+# Alibaba Cloud Registry verwenden (empfohlen für Server/Geräte in China)
 docker run -d \
            --name mcp-gateway \
            -p 8080:80 \
@@ -116,7 +116,7 @@ docker run -d \
            --restart unless-stopped \
            registry.ap-southeast-1.aliyuncs.com/mcp-ecosystem/mcp-gateway-allinone:latest
 
-# Verwendung der GitHub Container Registry
+# GitHub Container Registry verwenden
 docker run -d \
            --name mcp-gateway \
            -p 8080:80 \
@@ -136,5 +136,5 @@ docker run -d \
 
 1. Stellen Sie sicher, dass die Konfigurationsdateien und die Umgebungsdatei korrekt eingerichtet sind.
 2. Es wird empfohlen, einen spezifischen Versions-Tag anstelle von `latest` zu verwenden.
-3. Setzen Sie angemessene Ressourcenbeschränkungen für Produktionsbereitstellungen.
-4. Stellen Sie sicher, dass gemountete Verzeichnisse die richtigen Berechtigungen haben. 
+3. Setzen Sie angemessene Ressourcenlimits für Produktionsbereitstellungen.
+4. Stellen Sie sicher, dass die eingebundenen Verzeichnisse die richtigen Berechtigungen haben. 
