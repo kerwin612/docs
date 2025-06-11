@@ -10,8 +10,8 @@ MCP Gateway 提供两种部署方式：
 
 镜像发布到以下三个仓库：
 - Docker Hub: `docker.io/ifuryst/mcp-gateway-*`
-- GitHub Container Registry: `ghcr.io/mcp-ecosystem/mcp-gateway/*`
-- 阿里云容器镜像服务: `registry.ap-southeast-1.aliyuncs.com/mcp-ecosystem/mcp-gateway-*`
+- GitHub Container Registry: `ghcr.io/amoylab/unla/*`
+- 阿里云容器镜像服务: `registry.ap-southeast-1.aliyuncs.com/amoylab/unla-*`
 
 *ghcr支持多层目录，所以组织形式会更清晰，Docker和阿里云的仓库只能一层目录，因此后面镜像名用-拼接*
 
@@ -27,28 +27,28 @@ MCP Gateway 提供两种部署方式：
 ```bash
 # All-in-One 版本
 docker pull docker.io/ifuryst/mcp-gateway-allinone:latest
-docker pull ghcr.io/mcp-ecosystem/mcp-gateway/allinone:latest
-docker pull registry.ap-southeast-1.aliyuncs.com/mcp-ecosystem/mcp-gateway-allinone:latest
+docker pull ghcr.io/amoylab/unla/allinone:latest
+docker pull registry.ap-southeast-1.aliyuncs.com/amoylab/unla-allinone:latest
 
 # API Server
 docker pull docker.io/ifuryst/mcp-gateway-apiserver:latest
-docker pull ghcr.io/mcp-ecosystem/mcp-gateway/apiserver:latest
-docker pull registry.ap-southeast-1.aliyuncs.com/mcp-ecosystem/mcp-gateway-apiserver:latest
+docker pull ghcr.io/amoylab/unla/apiserver:latest
+docker pull registry.ap-southeast-1.aliyuncs.com/amoylab/unla-apiserver:latest
 
 # MCP Gateway
 docker pull docker.io/ifuryst/mcp-gateway-mcp-gateway:latest
-docker pull ghcr.io/mcp-ecosystem/mcp-gateway/mcp-gateway:latest
-docker pull registry.ap-southeast-1.aliyuncs.com/mcp-ecosystem/mcp-gateway-mcp-gateway:latest
+docker pull ghcr.io/amoylab/unla/mcp-gateway:latest
+docker pull registry.ap-southeast-1.aliyuncs.com/amoylab/unla-mcp-gateway:latest
 
 # Mock User Service
 docker pull docker.io/ifuryst/mcp-gateway-mock-server:latest
-docker pull ghcr.io/mcp-ecosystem/mcp-gateway/mock-server:latest
-docker pull registry.ap-southeast-1.aliyuncs.com/mcp-ecosystem/mcp-gateway-mock-server:latest
+docker pull ghcr.io/amoylab/unla/mock-server:latest
+docker pull registry.ap-southeast-1.aliyuncs.com/amoylab/unla-mock-server:latest
 
 # Web 前端
 docker pull docker.io/ifuryst/mcp-gateway-web:latest
-docker pull ghcr.io/mcp-ecosystem/mcp-gateway/web:latest
-docker pull registry.ap-southeast-1.aliyuncs.com/mcp-ecosystem/mcp-gateway-web:latest
+docker pull ghcr.io/amoylab/unla/web:latest
+docker pull registry.ap-southeast-1.aliyuncs.com/amoylab/unla-web:latest
 ```
 
 ## 部署
@@ -87,9 +87,9 @@ All-in-One 部署将所有服务打包在一个容器中，适合单机部署或
 ```bash
 mkdir -p mcp-gateway/{configs,data}
 cd mcp-gateway/
-curl -sL https://raw.githubusercontent.com/mcp-ecosystem/mcp-gateway/refs/heads/main/configs/apiserver.yaml -o configs/apiserver.yaml
-curl -sL https://raw.githubusercontent.com/mcp-ecosystem/mcp-gateway/refs/heads/main/configs/mcp-gateway.yaml -o configs/mcp-gateway.yaml
-curl -sL https://raw.githubusercontent.com/mcp-ecosystem/mcp-gateway/refs/heads/main/.env.example -o .env.allinone
+curl -sL https://raw.githubusercontent.com/amoylab/unla/refs/heads/main/configs/apiserver.yaml -o configs/apiserver.yaml
+curl -sL https://raw.githubusercontent.com/amoylab/unla/refs/heads/main/configs/mcp-gateway.yaml -o configs/mcp-gateway.yaml
+curl -sL https://raw.githubusercontent.com/amoylab/unla/refs/heads/main/.env.example -o .env.allinone
 ```
 
 > LLMs可以按需更换，如换成千问（需要兼容OpenAI）
@@ -115,7 +115,7 @@ docker run -d \
            -v $(pwd)/data:/app/data \
            -v $(pwd)/.env.allinone:/app/.env \
            --restart unless-stopped \
-           registry.ap-southeast-1.aliyuncs.com/mcp-ecosystem/mcp-gateway-allinone:latest
+           registry.ap-southeast-1.aliyuncs.com/amoylab/unla-allinone:latest
 
 # 使用 GitHub Container Registry 镜像
 docker run -d \
@@ -130,7 +130,7 @@ docker run -d \
            -v $(pwd)/data:/app/data \
            -v $(pwd)/.env.allinone:/app/.env \
            --restart unless-stopped \
-           ghcr.io/mcp-ecosystem/mcp-gateway/allinone:latest
+           ghcr.io/amoylab/unla/allinone:latest
 ```
 
 #### 注意事项
@@ -154,8 +154,8 @@ docker run -d \
 3. 使用redis用于配置更新通知、OAuth存储等用途
 
 大体步骤：
-1. 配置[docker-compose.yaml](https://raw.githubusercontent.com/mcp-ecosystem/mcp-gateway/refs/heads/main/deploy/docker/multi/docker-compose.yml)
-2. 从[.env.example](https://raw.githubusercontent.com/mcp-ecosystem/mcp-gateway/refs/heads/main/.env.example)拷贝并配置.env
+1. 配置[docker-compose.yaml](https://raw.githubusercontent.com/amoylab/unla/refs/heads/main/deploy/docker/multi/docker-compose.yml)
+2. 从[.env.example](https://raw.githubusercontent.com/amoylab/unla/refs/heads/main/.env.example)拷贝并配置.env
 3. 运行`docker compose up -d`
 4. 按需配置`Nginx`等LB层
 
@@ -190,7 +190,7 @@ services:
     restart: always
 
   web:
-    image: ghcr.io/mcp-ecosystem/mcp-gateway/web:latest
+    image: ghcr.io/amoylab/unla/web:latest
     ports:
       - "8080:80"
       - "5234:5234"
@@ -207,7 +207,7 @@ services:
     restart: always
 
   mcp-gateway:
-    image: ghcr.io/mcp-ecosystem/mcp-gateway/mcp-gateway:latest
+    image: ghcr.io/amoylab/unla/mcp-gateway:latest
     ports:
       - "5235:5235"
     environment:
@@ -221,7 +221,7 @@ services:
     restart: always
 
   mock-server:
-    image: ghcr.io/mcp-ecosystem/mcp-gateway/mock-server:latest
+    image: ghcr.io/amoylab/unla/mock-server:latest
     ports:
       - "5236:5236"
     environment:
@@ -352,7 +352,7 @@ SUPER_ADMIN_PASSWORD=**********
 
 APISERVER_I18N_PATH=./configs/i18n
 
-OAUTH2_ISSUER=https://github.com/mcp-ecosystem/mcp-gateway
+OAUTH2_ISSUER=https://github.com/amoylab/unla
 OAUTH2_STORAGE_TYPE=redis
 OAUTH2_REDIS_ADDR=redis:6379
 OAUTH2_REDIS_PASSWORD=**********

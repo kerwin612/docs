@@ -24,7 +24,7 @@ MCP Gateway 프로젝트는 다음과 같은 핵심 구성 요소로 이루어�
 
 ### 1. 프로젝트 복제
 
-[MCP Gateway 코드 저장소](https://github.com/mcp-ecosystem/mcp-gateway)를 방문하여 `Fork` 버튼을 클릭하여 프로젝트를 자신의 GitHub 계정으로 포크합니다.
+[MCP Gateway 코드 저장소](https://github.com/amoylab/unla)를 방문하여 `Fork` 버튼을 클릭하여 프로젝트를 자신의 GitHub 계정으로 포크합니다.
 
 ### 2. 로컬로 복제
 
@@ -126,7 +126,7 @@ git clone https://github.com/your-github-username/mcp-gateway.git
 
 2. 업스트림 저장소 추가:
 ```bash
-git remote add upstream git@github.com:mcp-ecosystem/mcp-gateway.git
+git remote add upstream git@github.com:amoylab/unla.git
 ```
 
 3. 업스트림 코드와 동기화:

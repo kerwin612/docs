@@ -10,8 +10,8 @@ MCP Gatewayは2つのデプロイ方法を提供しています：
 
 イメージは以下のレジストリに公開されています：
 - Docker Hub: `docker.io/ifuryst/mcp-gateway-*`
-- GitHub Container Registry: `ghcr.io/mcp-ecosystem/mcp-gateway/*`
-- 阿里云容器镜像服务: `registry.ap-southeast-1.aliyuncs.com/mcp-ecosystem/mcp-gateway-*`
+- GitHub Container Registry: `ghcr.io/amoylab/unla/*`
+- 阿里云容器镜像服务: `registry.ap-southeast-1.aliyuncs.com/amoylab/unla-*`
 
 *GitHub Container Registryは複数レベルのディレクトリをサポートしており、より明確な組織化が可能です。一方、Docker Hubと阿里云のレジストリはハイフンを使用したフラットな命名規則を使用しています。*
 
@@ -27,28 +27,28 @@ MCP Gatewayは2つのデプロイ方法を提供しています：
 ```bash
 # All-in-Oneバージョン
 docker pull docker.io/ifuryst/mcp-gateway-allinone:latest
-docker pull ghcr.io/mcp-ecosystem/mcp-gateway/allinone:latest
-docker pull registry.ap-southeast-1.aliyuncs.com/mcp-ecosystem/mcp-gateway-allinone:latest
+docker pull ghcr.io/amoylab/unla/allinone:latest
+docker pull registry.ap-southeast-1.aliyuncs.com/amoylab/unla-allinone:latest
 
 # API Server
 docker pull docker.io/ifuryst/mcp-gateway-apiserver:latest
-docker pull ghcr.io/mcp-ecosystem/mcp-gateway/apiserver:latest
-docker pull registry.ap-southeast-1.aliyuncs.com/mcp-ecosystem/mcp-gateway-apiserver:latest
+docker pull ghcr.io/amoylab/unla/apiserver:latest
+docker pull registry.ap-southeast-1.aliyuncs.com/amoylab/unla-apiserver:latest
 
 # MCP Gateway
 docker pull docker.io/ifuryst/mcp-gateway-mcp-gateway:latest
-docker pull ghcr.io/mcp-ecosystem/mcp-gateway/mcp-gateway:latest
-docker pull registry.ap-southeast-1.aliyuncs.com/mcp-ecosystem/mcp-gateway-mcp-gateway:latest
+docker pull ghcr.io/amoylab/unla/mcp-gateway:latest
+docker pull registry.ap-southeast-1.aliyuncs.com/amoylab/unla-mcp-gateway:latest
 
 # Mock User Service
 docker pull docker.io/ifuryst/mcp-gateway-mock-server:latest
-docker pull ghcr.io/mcp-ecosystem/mcp-gateway/mock-server:latest
-docker pull registry.ap-southeast-1.aliyuncs.com/mcp-ecosystem/mcp-gateway-mock-server:latest
+docker pull ghcr.io/amoylab/unla/mock-server:latest
+docker pull registry.ap-southeast-1.aliyuncs.com/amoylab/unla-mock-server:latest
 
 # Web Frontend
 docker pull docker.io/ifuryst/mcp-gateway-web:latest
-docker pull ghcr.io/mcp-ecosystem/mcp-gateway/web:latest
-docker pull registry.ap-southeast-1.aliyuncs.com/mcp-ecosystem/mcp-gateway-web:latest
+docker pull ghcr.io/amoylab/unla/web:latest
+docker pull registry.ap-southeast-1.aliyuncs.com/amoylab/unla-web:latest
 ```
 
 ## デプロイ
@@ -86,9 +86,9 @@ All-in-Oneデプロイはすべてのサービスを1つのコンテナにパッ
 ```bash
 mkdir -p mcp-gateway/{configs,data}
 cd mcp-gateway/
-curl -sL https://raw.githubusercontent.com/mcp-ecosystem/mcp-gateway/refs/heads/main/configs/apiserver.yaml -o configs/apiserver.yaml
-curl -sL https://raw.githubusercontent.com/mcp-ecosystem/mcp-gateway/refs/heads/main/configs/mcp-gateway.yaml -o configs/mcp-gateway.yaml
-curl -sL https://raw.githubusercontent.com/mcp-ecosystem/mcp-gateway/refs/heads/main/.env.example -o .env.allinone
+curl -sL https://raw.githubusercontent.com/amoylab/unla/refs/heads/main/configs/apiserver.yaml -o configs/apiserver.yaml
+curl -sL https://raw.githubusercontent.com/amoylab/unla/refs/heads/main/configs/mcp-gateway.yaml -o configs/mcp-gateway.yaml
+curl -sL https://raw.githubusercontent.com/amoylab/unla/refs/heads/main/.env.example -o .env.allinone
 ```
 
 > 必要に応じてデフォルトのLLMを置き換えることができます（OpenAI互換である必要があります）、例：千问を使用：
@@ -114,7 +114,7 @@ docker run -d \
            -v $(pwd)/data:/app/data \
            -v $(pwd)/.env.allinone:/app/.env \
            --restart unless-stopped \
-           registry.ap-southeast-1.aliyuncs.com/mcp-ecosystem/mcp-gateway-allinone:latest
+           registry.ap-southeast-1.aliyuncs.com/amoylab/unla-allinone:latest
 
 # GitHub Container Registryを使用
 docker run -d \
@@ -129,7 +129,7 @@ docker run -d \
            -v $(pwd)/data:/app/data \
            -v $(pwd)/.env.allinone:/app/.env \
            --restart unless-stopped \
-           ghcr.io/mcp-ecosystem/mcp-gateway/allinone:latest
+           ghcr.io/amoylab/unla/allinone:latest
 ```
 
 #### 注意事項

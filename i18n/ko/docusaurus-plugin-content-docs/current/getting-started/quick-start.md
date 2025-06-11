@@ -30,7 +30,7 @@ docker run -d \
   -e SUPER_ADMIN_USERNAME=${SUPER_ADMIN_USERNAME} \
   -e SUPER_ADMIN_PASSWORD=${SUPER_ADMIN_PASSWORD} \
   --restart unless-stopped \
-  ghcr.io/mcp-ecosystem/mcp-gateway/allinone:latest
+  ghcr.io/amoylab/unla/allinone:latest
 ```
 
 중국 본토 사용자의 경우, 알리클라우드 레지스트리를 사용하고 모델을 커스터마이즈할 수 있습니다 (예: Qianwen):
@@ -63,7 +63,7 @@ docker run -d \
   -e SUPER_ADMIN_USERNAME=${SUPER_ADMIN_USERNAME} \
   -e SUPER_ADMIN_PASSWORD=${SUPER_ADMIN_PASSWORD} \
   --restart unless-stopped \
-  registry.ap-southeast-1.aliyuncs.com/mcp-ecosystem/mcp-gateway-allinone:latest
+  registry.ap-southeast-1.aliyuncs.com/amoylab/unla-allinone:latest
 ```
 
 ## 접근 및 설정
@@ -73,7 +73,7 @@ docker run -d \
    - 설정된 관리자 자격 증명으로 로그인
 
 2. 새 MCP 서버 추가:
-   - 설정 파일 복사: https://github.com/mcp-ecosystem/mcp-gateway/blob/main/configs/mock-server.yaml
+   - 설정 파일 복사: https://github.com/amoylab/unla/blob/main/configs/mock-server.yaml
    - 웹 UI에서 "Add MCP Server" 클릭
    - 설정 붙여넣기 및 저장
 
@@ -105,9 +105,9 @@ MCP 클라이언트에서 `/sse` 또는 `/mcp`로 끝나는 URL을 설정하면 
 ```bash
 mkdir -p mcp-gateway/{configs,data}
 cd mcp-gateway/
-curl -sL https://raw.githubusercontent.com/mcp-ecosystem/mcp-gateway/refs/heads/main/configs/apiserver.yaml -o configs/apiserver.yaml
-curl -sL https://raw.githubusercontent.com/mcp-ecosystem/mcp-gateway/refs/heads/main/configs/mcp-gateway.yaml -o configs/mcp-gateway.yaml
-curl -sL https://raw.githubusercontent.com/mcp-ecosystem/mcp-gateway/refs/heads/main/.env.example -o .env.allinone
+curl -sL https://raw.githubusercontent.com/amoylab/unla/refs/heads/main/configs/apiserver.yaml -o configs/apiserver.yaml
+curl -sL https://raw.githubusercontent.com/amoylab/unla/refs/heads/main/configs/mcp-gateway.yaml -o configs/mcp-gateway.yaml
+curl -sL https://raw.githubusercontent.com/amoylab/unla/refs/heads/main/.env.example -o .env.allinone
 ```
 
 2. Docker로 MCP Gateway 실행:
@@ -125,5 +125,5 @@ docker run -d \
            -v $(pwd)/data:/app/data \
            -v $(pwd)/.env.allinone:/app/.env \
            --restart unless-stopped \
-           ghcr.io/mcp-ecosystem/mcp-gateway/allinone:latest
+           ghcr.io/amoylab/unla/allinone:latest
 ``` 

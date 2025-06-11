@@ -35,8 +35,8 @@ const createConfig = async function (): Promise<Config> {
     url: 'https://mcp.ifuryst.com',
     baseUrl: '/',
 
-    organizationName: 'mcp-ecosystem',
-    projectName: 'mcp-gateway',
+    organizationName: 'amoylab',
+    projectName: 'unla',
 
     onBrokenLinks: 'warn',
     onBrokenMarkdownLinks: 'warn',
@@ -64,7 +64,7 @@ const createConfig = async function (): Promise<Config> {
             path: 'docs',
             routeBasePath: '/',
             sidebarPath: require.resolve('./sidebars.ts'),
-            editUrl: 'https://github.com/mcp-ecosystem/docs/edit/main/',
+            editUrl: 'https://github.com/amoylab/docs/edit/main/',
           },
           blog: {
             showReadingTime: true,
@@ -72,7 +72,7 @@ const createConfig = async function (): Promise<Config> {
               type: ['rss', 'atom'],
               xslt: true,
             },
-            editUrl: 'https://github.com/mcp-ecosystem/docs/edit/main/blog/',
+            editUrl: 'https://github.com/amoylab/docs/edit/main/blog/',
           },
           theme: {
             customCss: './src/css/custom.css',
@@ -130,7 +130,7 @@ const createConfig = async function (): Promise<Config> {
           },
           { type: 'localeDropdown', position: 'right' },
           {
-            href: 'https://github.com/mcp-ecosystem/mcp-gateway',
+            href: 'https://github.com/amoylab/unla',
             label: 'GitHub',
             position: 'right',
           },
@@ -189,7 +189,7 @@ const createConfig = async function (): Promise<Config> {
                   es: 'Discusiones',
                   hi: 'चर्चाएँ'
                 }[locale] ?? '讨论区',
-                href: 'https://github.com/mcp-ecosystem/mcp-gateway/discussions',
+                href: 'https://github.com/amoylab/unla/discussions',
               },
               {
                 label: 'Discord',
@@ -211,11 +211,11 @@ const createConfig = async function (): Promise<Config> {
             items: [
               {
                 label: 'GitHub - MCP Gateway',
-                href: 'https://github.com/mcp-ecosystem/mcp-gateway',
+                href: 'https://github.com/amoylab/unla',
               },
               {
                 label: 'GitHub - Docs',
-                href: 'https://github.com/mcp-ecosystem/docs',
+                href: 'https://github.com/amoylab/docs',
               },
             ],
           },

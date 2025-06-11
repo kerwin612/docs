@@ -15,7 +15,7 @@ Currently supports 3 types of databases:
 - PostgreSQL
 - MySQL
 
-If you need to add support for additional databases, you can request it in the [Issue](https://github.com/mcp-ecosystem/mcp-gateway/issues) section, or you can implement the corresponding implementation and submit a PR :)
+If you need to add support for additional databases, you can request it in the [Issue](https://github.com/amoylab/unla/issues) section, or you can implement the corresponding implementation and submit a PR :)
 
 ```yaml
 database:

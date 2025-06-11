@@ -24,7 +24,7 @@ MCP Gateway 项目由以下几个核心组件组成：
 
 ### 1. 克隆项目
 
-访问 [MCP Gateway 代码仓库](https://github.com/mcp-ecosystem/mcp-gateway)，点击 `Fork` 按钮，将项目 fork 到你的 GitHub 账户下。
+访问 [MCP Gateway 代码仓库](https://github.com/amoylab/unla)，点击 `Fork` 按钮，将项目 fork 到你的 GitHub 账户下。
 
 ### 2. 克隆到本地
 
@@ -130,7 +130,7 @@ git clone https://github.com/your-github-username/mcp-gateway.git
 
 2. 添加上游仓库：
 ```bash
-git remote add upstream git@github.com:mcp-ecosystem/mcp-gateway.git
+git remote add upstream git@github.com:amoylab/unla.git
 ```
 
 3. 同步上游代码：

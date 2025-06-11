@@ -23,7 +23,7 @@ Please try again in a few minutes, or visit:
 ## 🛠️ About This Project
 
 In the meantime, feel free to check out our GitHub repo:  
-👉 [https://github.com/mcp-ecosystem/mcp-gateway](https://github.com/mcp-ecosystem/mcp-gateway)
+👉 [https://github.com/amoylab/unla](https://github.com/amoylab/unla)
 
 ---
 
@@ -58,7 +58,7 @@ Docusaurus is working hard. Grab a coffee and come back soon ☕🚀
 ## 🛠️ 项目介绍
 
 在等待的这段时间，欢迎先访问我们的 GitHub 仓库：  
-👉 [https://github.com/mcp-ecosystem/mcp-gateway](https://github.com/mcp-ecosystem/mcp-gateway)
+👉 [https://github.com/amoylab/unla](https://github.com/amoylab/unla)
 
 ---
 

@@ -10,8 +10,8 @@ MCP Gateway offers two deployment methods:
 
 Images are published to the following registries:
 - Docker Hub: `docker.io/ifuryst/mcp-gateway-*`
-- GitHub Container Registry: `ghcr.io/mcp-ecosystem/mcp-gateway/*`
-- Alibaba Cloud Container Registry: `registry.ap-southeast-1.aliyuncs.com/mcp-ecosystem/mcp-gateway-*`
+- GitHub Container Registry: `ghcr.io/amoylab/unla/*`
+- Alibaba Cloud Container Registry: `registry.ap-southeast-1.aliyuncs.com/amoylab/unla-*`
 
 *GitHub Container Registry supports multi-level directories for clearer organization, while Docker Hub and Alibaba Cloud registries use flat naming with hyphens.*
 
@@ -27,28 +27,28 @@ Images are published to the following registries:
 ```bash
 # All-in-One version
 docker pull docker.io/ifuryst/mcp-gateway-allinone:latest
-docker pull ghcr.io/mcp-ecosystem/mcp-gateway/allinone:latest
-docker pull registry.ap-southeast-1.aliyuncs.com/mcp-ecosystem/mcp-gateway-allinone:latest
+docker pull ghcr.io/amoylab/unla/allinone:latest
+docker pull registry.ap-southeast-1.aliyuncs.com/amoylab/unla-allinone:latest
 
 # API Server
 docker pull docker.io/ifuryst/mcp-gateway-apiserver:latest
-docker pull ghcr.io/mcp-ecosystem/mcp-gateway/apiserver:latest
-docker pull registry.ap-southeast-1.aliyuncs.com/mcp-ecosystem/mcp-gateway-apiserver:latest
+docker pull ghcr.io/amoylab/unla/apiserver:latest
+docker pull registry.ap-southeast-1.aliyuncs.com/amoylab/unla-apiserver:latest
 
 # MCP Gateway
 docker pull docker.io/ifuryst/mcp-gateway-mcp-gateway:latest
-docker pull ghcr.io/mcp-ecosystem/mcp-gateway/mcp-gateway:latest
-docker pull registry.ap-southeast-1.aliyuncs.com/mcp-ecosystem/mcp-gateway-mcp-gateway:latest
+docker pull ghcr.io/amoylab/unla/mcp-gateway:latest
+docker pull registry.ap-southeast-1.aliyuncs.com/amoylab/unla-mcp-gateway:latest
 
 # Mock User Service
 docker pull docker.io/ifuryst/mcp-gateway-mock-server:latest
-docker pull ghcr.io/mcp-ecosystem/mcp-gateway/mock-server:latest
-docker pull registry.ap-southeast-1.aliyuncs.com/mcp-ecosystem/mcp-gateway-mock-server:latest
+docker pull ghcr.io/amoylab/unla/mock-server:latest
+docker pull registry.ap-southeast-1.aliyuncs.com/amoylab/unla-mock-server:latest
 
 # Web Frontend
 docker pull docker.io/ifuryst/mcp-gateway-web:latest
-docker pull ghcr.io/mcp-ecosystem/mcp-gateway/web:latest
-docker pull registry.ap-southeast-1.aliyuncs.com/mcp-ecosystem/mcp-gateway-web:latest
+docker pull ghcr.io/amoylab/unla/web:latest
+docker pull registry.ap-southeast-1.aliyuncs.com/amoylab/unla-web:latest
 ```
 
 ## Deployment
@@ -86,9 +86,9 @@ It is recommended to mount the following directories:
 ```bash
 mkdir -p mcp-gateway/{configs,data}
 cd mcp-gateway/
-curl -sL https://raw.githubusercontent.com/mcp-ecosystem/mcp-gateway/refs/heads/main/configs/apiserver.yaml -o configs/apiserver.yaml
-curl -sL https://raw.githubusercontent.com/mcp-ecosystem/mcp-gateway/refs/heads/main/configs/mcp-gateway.yaml -o configs/mcp-gateway.yaml
-curl -sL https://raw.githubusercontent.com/mcp-ecosystem/mcp-gateway/refs/heads/main/.env.example -o .env.allinone
+curl -sL https://raw.githubusercontent.com/amoylab/unla/refs/heads/main/configs/apiserver.yaml -o configs/apiserver.yaml
+curl -sL https://raw.githubusercontent.com/amoylab/unla/refs/heads/main/configs/mcp-gateway.yaml -o configs/mcp-gateway.yaml
+curl -sL https://raw.githubusercontent.com/amoylab/unla/refs/heads/main/.env.example -o .env.allinone
 ```
 
 > You can replace the default LLM if needed (must be OpenAI compatible), e.g., use Qwen:
@@ -114,7 +114,7 @@ docker run -d \
            -v $(pwd)/data:/app/data \
            -v $(pwd)/.env.allinone:/app/.env \
            --restart unless-stopped \
-           registry.ap-southeast-1.aliyuncs.com/mcp-ecosystem/mcp-gateway-allinone:latest
+           registry.ap-southeast-1.aliyuncs.com/amoylab/unla-allinone:latest
 
 # Using GitHub Container Registry
 docker run -d \
@@ -129,7 +129,7 @@ docker run -d \
            -v $(pwd)/data:/app/data \
            -v $(pwd)/.env.allinone:/app/.env \
            --restart unless-stopped \
-           ghcr.io/mcp-ecosystem/mcp-gateway/allinone:latest
+           ghcr.io/amoylab/unla/allinone:latest
 ```
 
 #### Notes
@@ -154,8 +154,8 @@ The following example demonstrates deployment using Docker Compose, which:
 3. Uses Redis for configuration update notifications, OAuth storage, and other purposes
 
 General steps:
-1. Configure [docker-compose.yaml](https://raw.githubusercontent.com/mcp-ecosystem/mcp-gateway/refs/heads/main/deploy/docker/multi/docker-compose.yml)
-2. Copy and configure .env from [.env.example](https://raw.githubusercontent.com/mcp-ecosystem/mcp-gateway/refs/heads/main/.env.example)
+1. Configure [docker-compose.yaml](https://raw.githubusercontent.com/amoylab/unla/refs/heads/main/deploy/docker/multi/docker-compose.yml)
+2. Copy and configure .env from [.env.example](https://raw.githubusercontent.com/amoylab/unla/refs/heads/main/.env.example)
 3. Run `docker compose up -d`
 4. Configure `Nginx` or other load balancers as needed
 
@@ -190,7 +190,7 @@ services:
     restart: always
 
   web:
-    image: ghcr.io/mcp-ecosystem/mcp-gateway/web:latest
+    image: ghcr.io/amoylab/unla/web:latest
     ports:
       - "8080:80"
       - "5234:5234"
@@ -207,7 +207,7 @@ services:
     restart: always
 
   mcp-gateway:
-    image: ghcr.io/mcp-ecosystem/mcp-gateway/mcp-gateway:latest
+    image: ghcr.io/amoylab/unla/mcp-gateway:latest
     ports:
       - "5235:5235"
     environment:
@@ -221,7 +221,7 @@ services:
     restart: always
 
   mock-server:
-    image: ghcr.io/mcp-ecosystem/mcp-gateway/mock-server:latest
+    image: ghcr.io/amoylab/unla/mock-server:latest
     ports:
       - "5236:5236"
     environment:

@@ -10,8 +10,8 @@ MCP Gateway bietet zwei Bereitstellungsmethoden:
 
 Die Images werden in folgenden Registrys veröffentlicht:
 - Docker Hub: `docker.io/ifuryst/mcp-gateway-*`
-- GitHub Container Registry: `ghcr.io/mcp-ecosystem/mcp-gateway/*`
-- Alibaba Cloud Container Registry: `registry.ap-southeast-1.aliyuncs.com/mcp-ecosystem/mcp-gateway-*`
+- GitHub Container Registry: `ghcr.io/amoylab/unla/*`
+- Alibaba Cloud Container Registry: `registry.ap-southeast-1.aliyuncs.com/amoylab/unla-*`
 
 *Die GitHub Container Registry unterstützt mehrstufige Verzeichnisse für eine klarere Organisation, während Docker Hub und Alibaba Cloud Registrys flache Benennung mit Bindestrichen verwenden.*
 
@@ -27,28 +27,28 @@ Die Images werden in folgenden Registrys veröffentlicht:
 ```bash
 # All-in-One-Version
 docker pull docker.io/ifuryst/mcp-gateway-allinone:latest
-docker pull ghcr.io/mcp-ecosystem/mcp-gateway/allinone:latest
-docker pull registry.ap-southeast-1.aliyuncs.com/mcp-ecosystem/mcp-gateway-allinone:latest
+docker pull ghcr.io/amoylab/unla/allinone:latest
+docker pull registry.ap-southeast-1.aliyuncs.com/amoylab/unla-allinone:latest
 
 # API Server
 docker pull docker.io/ifuryst/mcp-gateway-apiserver:latest
-docker pull ghcr.io/mcp-ecosystem/mcp-gateway/apiserver:latest
-docker pull registry.ap-southeast-1.aliyuncs.com/mcp-ecosystem/mcp-gateway-apiserver:latest
+docker pull ghcr.io/amoylab/unla/apiserver:latest
+docker pull registry.ap-southeast-1.aliyuncs.com/amoylab/unla-apiserver:latest
 
 # MCP Gateway
 docker pull docker.io/ifuryst/mcp-gateway-mcp-gateway:latest
-docker pull ghcr.io/mcp-ecosystem/mcp-gateway/mcp-gateway:latest
-docker pull registry.ap-southeast-1.aliyuncs.com/mcp-ecosystem/mcp-gateway-mcp-gateway:latest
+docker pull ghcr.io/amoylab/unla/mcp-gateway:latest
+docker pull registry.ap-southeast-1.aliyuncs.com/amoylab/unla-mcp-gateway:latest
 
 # Mock User Service
 docker pull docker.io/ifuryst/mcp-gateway-mock-server:latest
-docker pull ghcr.io/mcp-ecosystem/mcp-gateway/mock-server:latest
-docker pull registry.ap-southeast-1.aliyuncs.com/mcp-ecosystem/mcp-gateway-mock-server:latest
+docker pull ghcr.io/amoylab/unla/mock-server:latest
+docker pull registry.ap-southeast-1.aliyuncs.com/amoylab/unla-mock-server:latest
 
 # Web Frontend
 docker pull docker.io/ifuryst/mcp-gateway-web:latest
-docker pull ghcr.io/mcp-ecosystem/mcp-gateway/web:latest
-docker pull registry.ap-southeast-1.aliyuncs.com/mcp-ecosystem/mcp-gateway-web:latest
+docker pull ghcr.io/amoylab/unla/web:latest
+docker pull registry.ap-southeast-1.aliyuncs.com/amoylab/unla-web:latest
 ```
 
 ## Bereitstellung
@@ -86,9 +86,9 @@ Es wird empfohlen, folgende Verzeichnisse einzubinden:
 ```bash
 mkdir -p mcp-gateway/{configs,data}
 cd mcp-gateway/
-curl -sL https://raw.githubusercontent.com/mcp-ecosystem/mcp-gateway/refs/heads/main/configs/apiserver.yaml -o configs/apiserver.yaml
-curl -sL https://raw.githubusercontent.com/mcp-ecosystem/mcp-gateway/refs/heads/main/configs/mcp-gateway.yaml -o configs/mcp-gateway.yaml
-curl -sL https://raw.githubusercontent.com/mcp-ecosystem/mcp-gateway/refs/heads/main/.env.example -o .env.allinone
+curl -sL https://raw.githubusercontent.com/amoylab/unla/refs/heads/main/configs/apiserver.yaml -o configs/apiserver.yaml
+curl -sL https://raw.githubusercontent.com/amoylab/unla/refs/heads/main/configs/mcp-gateway.yaml -o configs/mcp-gateway.yaml
+curl -sL https://raw.githubusercontent.com/amoylab/unla/refs/heads/main/.env.example -o .env.allinone
 ```
 
 > Sie können das Standard-LLM bei Bedarf ersetzen (muss OpenAI-kompatibel sein), z.B. Qwen verwenden:
@@ -114,7 +114,7 @@ docker run -d \
            -v $(pwd)/data:/app/data \
            -v $(pwd)/.env.allinone:/app/.env \
            --restart unless-stopped \
-           registry.ap-southeast-1.aliyuncs.com/mcp-ecosystem/mcp-gateway-allinone:latest
+           registry.ap-southeast-1.aliyuncs.com/amoylab/unla-allinone:latest
 
 # GitHub Container Registry verwenden
 docker run -d \
@@ -129,7 +129,7 @@ docker run -d \
            -v $(pwd)/data:/app/data \
            -v $(pwd)/.env.allinone:/app/.env \
            --restart unless-stopped \
-           ghcr.io/mcp-ecosystem/mcp-gateway/allinone:latest
+           ghcr.io/amoylab/unla/allinone:latest
 ```
 
 #### Hinweise

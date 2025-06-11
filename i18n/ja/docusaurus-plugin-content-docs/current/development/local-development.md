@@ -24,7 +24,7 @@ MCP Gatewayプロジェクトは、以下の主要コンポーネントで構成
 
 ### 1. プロジェクトのクローン
 
-[MCP Gatewayコードリポジトリ](https://github.com/mcp-ecosystem/mcp-gateway)にアクセスし、`Fork`ボタンをクリックして、プロジェクトをあなたのGitHubアカウントにフォークします。
+[MCP Gatewayコードリポジトリ](https://github.com/amoylab/unla)にアクセスし、`Fork`ボタンをクリックして、プロジェクトをあなたのGitHubアカウントにフォークします。
 
 ### 2. ローカルにクローン
 
@@ -126,7 +126,7 @@ git clone https://github.com/your-github-username/mcp-gateway.git
 
 2. アップストリームリポジトリの追加：
 ```bash
-git remote add upstream git@github.com:mcp-ecosystem/mcp-gateway.git
+git remote add upstream git@github.com:amoylab/unla.git
 ```
 
 3. アップストリームコードとの同期：

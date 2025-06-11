@@ -15,7 +15,7 @@ Actualmente admite 3 tipos de bases de datos:
 - PostgreSQL
 - MySQL
 
-Si necesita agregar soporte para bases de datos adicionales, puede solicitarlo en la sección de [Issues](https://github.com/mcp-ecosystem/mcp-gateway/issues), o puede implementar la implementación correspondiente y enviar un PR :)
+Si necesita agregar soporte para bases de datos adicionales, puede solicitarlo en la sección de [Issues](https://github.com/amoylab/unla/issues), o puede implementar la implementación correspondiente y enviar un PR :)
 
 ```yaml
 database:

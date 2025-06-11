@@ -30,7 +30,7 @@ docker run -d \
   -e SUPER_ADMIN_USERNAME=${SUPER_ADMIN_USERNAME} \
   -e SUPER_ADMIN_PASSWORD=${SUPER_ADMIN_PASSWORD} \
   --restart unless-stopped \
-  ghcr.io/mcp-ecosystem/mcp-gateway/allinone:latest
+  ghcr.io/amoylab/unla/allinone:latest
 ```
 
 Para usuarios en China continental, puede usar el registro de Alibaba Cloud y personalizar el modelo (ejemplo con Qwen):
@@ -63,7 +63,7 @@ docker run -d \
   -e SUPER_ADMIN_USERNAME=${SUPER_ADMIN_USERNAME} \
   -e SUPER_ADMIN_PASSWORD=${SUPER_ADMIN_PASSWORD} \
   --restart unless-stopped \
-  registry.ap-southeast-1.aliyuncs.com/mcp-ecosystem/mcp-gateway-allinone:latest
+  registry.ap-southeast-1.aliyuncs.com/amoylab/unla-allinone:latest
 ```
 
 ## Acceso y Configuración
@@ -73,7 +73,7 @@ docker run -d \
    - Inicie sesión con las credenciales de administrador configuradas
 
 2. Agregar un nuevo servidor MCP:
-   - Copie el archivo de configuración: https://github.com/mcp-ecosystem/mcp-gateway/blob/main/configs/mock-server.yaml
+   - Copie el archivo de configuración: https://github.com/amoylab/unla/blob/main/configs/mock-server.yaml
    - Haga clic en "Add MCP Server" en la interfaz web
    - Pegue la configuración y guarde
 
@@ -105,9 +105,9 @@ Si necesita un control más granular de la configuración, puede iniciar el serv
 ```bash
 mkdir -p mcp-gateway/{configs,data}
 cd mcp-gateway/
-curl -sL https://raw.githubusercontent.com/mcp-ecosystem/mcp-gateway/refs/heads/main/configs/apiserver.yaml -o configs/apiserver.yaml
-curl -sL https://raw.githubusercontent.com/mcp-ecosystem/mcp-gateway/refs/heads/main/configs/mcp-gateway.yaml -o configs/mcp-gateway.yaml
-curl -sL https://raw.githubusercontent.com/mcp-ecosystem/mcp-gateway/refs/heads/main/.env.example -o .env.allinone
+curl -sL https://raw.githubusercontent.com/amoylab/unla/refs/heads/main/configs/apiserver.yaml -o configs/apiserver.yaml
+curl -sL https://raw.githubusercontent.com/amoylab/unla/refs/heads/main/configs/mcp-gateway.yaml -o configs/mcp-gateway.yaml
+curl -sL https://raw.githubusercontent.com/amoylab/unla/refs/heads/main/.env.example -o .env.allinone
 ```
 
 2. Ejecute MCP Gateway con Docker:
@@ -125,5 +125,5 @@ docker run -d \
            -v $(pwd)/data:/app/data \
            -v $(pwd)/.env.allinone:/app/.env \
            --restart unless-stopped \
-           ghcr.io/mcp-ecosystem/mcp-gateway/allinone:latest
+           ghcr.io/amoylab/unla/allinone:latest
 ``` 

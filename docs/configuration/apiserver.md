@@ -15,7 +15,7 @@
 - PostgreSQL
 - MySQL
 
-若有需要增加数据库支持可以到[Issue](https://github.com/mcp-ecosystem/mcp-gateway/issues)里请求支持，或者可以直接实现对应的impl并提交PR :)
+若有需要增加数据库支持可以到[Issue](https://github.com/amoylab/unla/issues)里请求支持，或者可以直接实现对应的impl并提交PR :)
 
 ```yaml
 database:

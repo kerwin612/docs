@@ -17,7 +17,7 @@
   },
   "link.item.label.讨论区": {
     "message": "토론",
-    "description": "The label of footer link with label=讨论区 linking to https://github.com/mcp-ecosystem/mcp-gateway/discussions"
+    "description": "The label of footer link with label=讨论区 linking to https://github.com/amoylab/unla/discussions"
   },
   "link.item.label.Discord": {
     "message": "Discord",
@@ -25,11 +25,11 @@
   },
   "link.item.label.GitHub - MCP Gateway": {
     "message": "GitHub - MCP Gateway",
-    "description": "The label of footer link with label=GitHub - MCP Gateway linking to https://github.com/mcp-ecosystem/mcp-gateway"
+    "description": "The label of footer link with label=GitHub - MCP Gateway linking to https://github.com/amoylab/unla"
   },
   "link.item.label.GitHub - Docs": {
     "message": "GitHub - 문서",
-    "description": "The label of footer link with label=GitHub - Docs linking to https://github.com/mcp-ecosystem/docs"
+    "description": "The label of footer link with label=GitHub - Docs linking to https://github.com/amoylab/docs"
   },
   "copyright": {
     "message": "Copyright © 2025 MCP Gateway. <a href=\"https://www.ifuryst.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Leo</a>가 만들었습니다.",

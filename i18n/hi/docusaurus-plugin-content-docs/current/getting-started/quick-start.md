@@ -30,7 +30,7 @@ docker run -d \
   -e SUPER_ADMIN_USERNAME=${SUPER_ADMIN_USERNAME} \
   -e SUPER_ADMIN_PASSWORD=${SUPER_ADMIN_PASSWORD} \
   --restart unless-stopped \
-  ghcr.io/mcp-ecosystem/mcp-gateway/allinone:latest
+  ghcr.io/amoylab/unla/allinone:latest
 ```
 
 मुख्यभूमि चीन के उपयोगकर्ताओं के लिए, आप अलीबाबा क्लाउड रजिस्ट्री का उपयोग कर सकते हैं और मॉडल को कस्टमाइज़ कर सकते हैं (उदाहरण के लिए Qwen):
@@ -63,7 +63,7 @@ docker run -d \
   -e SUPER_ADMIN_USERNAME=${SUPER_ADMIN_USERNAME} \
   -e SUPER_ADMIN_PASSWORD=${SUPER_ADMIN_PASSWORD} \
   --restart unless-stopped \
-  registry.ap-southeast-1.aliyuncs.com/mcp-ecosystem/mcp-gateway-allinone:latest
+  registry.ap-southeast-1.aliyuncs.com/amoylab/unla-allinone:latest
 ```
 
 ## पहुंच और कॉन्फ़िगरेशन
@@ -73,7 +73,7 @@ docker run -d \
    - कॉन्फ़िगर किए गए एडमिन क्रेडेंशियल्स से लॉगिन करें
 
 2. नया MCP सर्वर जोड़ें:
-   - कॉन्फ़िगरेशन फ़ाइल कॉपी करें: https://github.com/mcp-ecosystem/mcp-gateway/blob/main/configs/mock-server.yaml
+   - कॉन्फ़िगरेशन फ़ाइल कॉपी करें: https://github.com/amoylab/unla/blob/main/configs/mock-server.yaml
    - वेब UI में "Add MCP Server" पर क्लिक करें
    - कॉन्फ़िगरेशन पेस्ट करें और सेव करें
 
@@ -105,9 +105,9 @@ MCP क्लाइंट में `/sse` या `/mcp` से समाप्�
 ```bash
 mkdir -p mcp-gateway/{configs,data}
 cd mcp-gateway/
-curl -sL https://raw.githubusercontent.com/mcp-ecosystem/mcp-gateway/refs/heads/main/configs/apiserver.yaml -o configs/apiserver.yaml
-curl -sL https://raw.githubusercontent.com/mcp-ecosystem/mcp-gateway/refs/heads/main/configs/mcp-gateway.yaml -o configs/mcp-gateway.yaml
-curl -sL https://raw.githubusercontent.com/mcp-ecosystem/mcp-gateway/refs/heads/main/.env.example -o .env.allinone
+curl -sL https://raw.githubusercontent.com/amoylab/unla/refs/heads/main/configs/apiserver.yaml -o configs/apiserver.yaml
+curl -sL https://raw.githubusercontent.com/amoylab/unla/refs/heads/main/configs/mcp-gateway.yaml -o configs/mcp-gateway.yaml
+curl -sL https://raw.githubusercontent.com/amoylab/unla/refs/heads/main/.env.example -o .env.allinone
 ```
 
 2. Docker के साथ MCP Gateway चलाएं:
@@ -125,5 +125,5 @@ docker run -d \
            -v $(pwd)/data:/app/data \
            -v $(pwd)/.env.allinone:/app/.env \
            --restart unless-stopped \
-           ghcr.io/mcp-ecosystem/mcp-gateway/allinone:latest
+           ghcr.io/amoylab/unla/allinone:latest
 ``` 

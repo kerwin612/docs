@@ -15,7 +15,7 @@ Derzeit werden 3 Arten von Datenbanken unterstützt:
 - PostgreSQL
 - MySQL
 
-Wenn Sie Unterstützung für zusätzliche Datenbanken benötigen, können Sie dies im [Issue](https://github.com/mcp-ecosystem/mcp-gateway/issues) Bereich anfordern oder die entsprechende Implementierung selbst erstellen und einen PR einreichen :)
+Wenn Sie Unterstützung für zusätzliche Datenbanken benötigen, können Sie dies im [Issue](https://github.com/amoylab/unla/issues) Bereich anfordern oder die entsprechende Implementierung selbst erstellen und einen PR einreichen :)
 
 ```yaml
 database:

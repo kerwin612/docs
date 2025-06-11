@@ -30,7 +30,7 @@ docker run -d \
   -e SUPER_ADMIN_USERNAME=${SUPER_ADMIN_USERNAME} \
   -e SUPER_ADMIN_PASSWORD=${SUPER_ADMIN_PASSWORD} \
   --restart unless-stopped \
-  ghcr.io/mcp-ecosystem/mcp-gateway/allinone:latest
+  ghcr.io/amoylab/unla/allinone:latest
 ```
 
 中国本土のユーザーの場合、阿里雲レジストリを使用し、モデルをカスタマイズできます（例：千問）：
@@ -63,7 +63,7 @@ docker run -d \
   -e SUPER_ADMIN_USERNAME=${SUPER_ADMIN_USERNAME} \
   -e SUPER_ADMIN_PASSWORD=${SUPER_ADMIN_PASSWORD} \
   --restart unless-stopped \
-  registry.ap-southeast-1.aliyuncs.com/mcp-ecosystem/mcp-gateway-allinone:latest
+  registry.ap-southeast-1.aliyuncs.com/amoylab/unla-allinone:latest
 ```
 
 ## アクセスと設定
@@ -73,7 +73,7 @@ docker run -d \
    - 設定した管理者認証情報でログイン
 
 2. 新しい MCP Server を追加：
-   - 設定ファイルをコピー：https://github.com/mcp-ecosystem/mcp-gateway/blob/main/configs/mock-server.yaml
+   - 設定ファイルをコピー：https://github.com/amoylab/unla/blob/main/configs/mock-server.yaml
    - Web UI で「Add MCP Server」をクリック
    - 設定を貼り付けて保存
 
@@ -105,9 +105,9 @@ MCPクライアントで`/sse`または`/mcp`で終わるURLを設定すると�
 ```bash
 mkdir -p mcp-gateway/{configs,data}
 cd mcp-gateway/
-curl -sL https://raw.githubusercontent.com/mcp-ecosystem/mcp-gateway/refs/heads/main/configs/apiserver.yaml -o configs/apiserver.yaml
-curl -sL https://raw.githubusercontent.com/mcp-ecosystem/mcp-gateway/refs/heads/main/configs/mcp-gateway.yaml -o configs/mcp-gateway.yaml
-curl -sL https://raw.githubusercontent.com/mcp-ecosystem/mcp-gateway/refs/heads/main/.env.example -o .env.allinone
+curl -sL https://raw.githubusercontent.com/amoylab/unla/refs/heads/main/configs/apiserver.yaml -o configs/apiserver.yaml
+curl -sL https://raw.githubusercontent.com/amoylab/unla/refs/heads/main/configs/mcp-gateway.yaml -o configs/mcp-gateway.yaml
+curl -sL https://raw.githubusercontent.com/amoylab/unla/refs/heads/main/.env.example -o .env.allinone
 ```
 
 2. Docker で MCP Gateway を実行：
@@ -125,5 +125,5 @@ docker run -d \
            -v $(pwd)/data:/app/data \
            -v $(pwd)/.env.allinone:/app/.env \
            --restart unless-stopped \
-           ghcr.io/mcp-ecosystem/mcp-gateway/allinone:latest
+           ghcr.io/amoylab/unla/allinone:latest
 ``` 

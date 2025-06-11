@@ -24,7 +24,7 @@ El proyecto MCP Gateway consiste en los siguientes componentes principales:
 
 ### 1. Clonar el Proyecto
 
-Visita el [repositorio de código de MCP Gateway](https://github.com/mcp-ecosystem/mcp-gateway), haz clic en el botón `Fork` para bifurcar el proyecto a tu cuenta de GitHub.
+Visita el [repositorio de código de MCP Gateway](https://github.com/amoylab/unla), haz clic en el botón `Fork` para bifurcar el proyecto a tu cuenta de GitHub.
 
 ### 2. Clonar Localmente
 
@@ -126,7 +126,7 @@ git clone https://github.com/your-github-username/mcp-gateway.git
 
 2. Agregue el repositorio upstream:
 ```bash
-git remote add upstream git@github.com:mcp-ecosystem/mcp-gateway.git
+git remote add upstream git@github.com:amoylab/unla.git
 ```
 
 3. Sincronice con el código upstream:

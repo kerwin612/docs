@@ -15,7 +15,7 @@
 - PostgreSQL
 - MySQL
 
-追加のデータベースサポートが必要な場合は、[Issue](https://github.com/mcp-ecosystem/mcp-gateway/issues)でリクエストするか、対応する実装を作成してPRを提出することができます :)
+追加のデータベースサポートが必要な場合は、[Issue](https://github.com/amoylab/unla/issues)でリクエストするか、対応する実装を作成してPRを提出することができます :)
 
 ```yaml
 database:

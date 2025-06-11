@@ -24,7 +24,7 @@ MCP Gateway परियोजना निम्नलिखित मुख्
 
 ### 1. परियोजना को क्लोन करें
 
-[MCP Gateway कोड रिपॉजिटरी](https://github.com/mcp-ecosystem/mcp-gateway) पर जाएँ, `Fork` बटन पर क्लिक करें, परियोजना को अपने GitHub खाते में फोर्क करें।
+[MCP Gateway कोड रिपॉजिटरी](https://github.com/amoylab/unla) पर जाएँ, `Fork` बटन पर क्लिक करें, परियोजना को अपने GitHub खाते में फोर्क करें।
 
 ### 2. स्थानीय रूप से क्लोन करें
 
@@ -119,7 +119,7 @@ git clone https://github.com/your-github-username/mcp-gateway.git
 
 2. अपस्ट्रीम रिपॉजिटरी जोड़ें:
 ```bash
-git remote add upstream git@github.com:mcp-ecosystem/mcp-gateway.git
+git remote add upstream git@github.com:amoylab/unla.git
 ```
 
 3. अपस्ट्रीम कोड के साथ सिंक्रनाइज़ करें:

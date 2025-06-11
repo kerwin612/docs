@@ -15,7 +15,7 @@ Actuellement, 3 types de bases de données sont pris en charge :
 - PostgreSQL
 - MySQL
 
-Si vous avez besoin d'ajouter la prise en charge de bases de données supplémentaires, vous pouvez le demander dans la section [Issues](https://github.com/mcp-ecosystem/mcp-gateway/issues), ou vous pouvez implémenter l'implémentation correspondante et soumettre une PR :)
+Si vous avez besoin d'ajouter la prise en charge de bases de données supplémentaires, vous pouvez le demander dans la section [Issues](https://github.com/amoylab/unla/issues), ou vous pouvez implémenter l'implémentation correspondante et soumettre une PR :)
 
 ```yaml
 database:
