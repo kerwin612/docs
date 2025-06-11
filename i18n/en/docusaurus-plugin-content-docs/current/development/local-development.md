@@ -31,14 +31,14 @@ Visit the [MCP Gateway code repository](https://github.com/amoylab/unla), click 
 Clone your forked repository locally:
 
 ```bash
-git clone https://github.com/your-github-username/mcp-gateway.git
+git clone https://github.com/your-github-username/unla.git
 ```
 
 ### 3. Initialize Environment Dependencies
 
 Enter the project directory:
 ```bash
-cd mcp-gateway
+cd unla
 ```
 
 Install dependencies:
@@ -121,7 +121,7 @@ Before starting to develop new features or fix bugs, please follow these steps t
 
 1. Clone your fork repository locally:
 ```bash
-git clone https://github.com/your-github-username/mcp-gateway.git
+git clone https://github.com/your-github-username/unla.git
 ```
 
 2. Add upstream repository:

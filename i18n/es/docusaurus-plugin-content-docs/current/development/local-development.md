@@ -38,7 +38,7 @@ git clone https://github.com/tu-nombre-de-usuario-github/mcp-gateway.git
 
 Ingresa al directorio del proyecto:
 ```bash
-cd mcp-gateway
+cd unla
 ```
 
 Instala las dependencias:
@@ -121,7 +121,7 @@ Antes de comenzar a desarrollar nuevas características o corregir errores, siga
 
 1. Clone su repositorio fork localmente:
 ```bash
-git clone https://github.com/your-github-username/mcp-gateway.git
+git clone https://github.com/your-github-username/unla.git
 ```
 
 2. Agregue el repositorio upstream:

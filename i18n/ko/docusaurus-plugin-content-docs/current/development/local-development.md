@@ -38,7 +38,7 @@ git clone https://github.com/당신의-github-사용자-이름/mcp-gateway.git
 
 프로젝트 디렉토리로 이동합니다:
 ```bash
-cd mcp-gateway
+cd unla
 ```
 
 의존성을 설치합니다:
@@ -121,7 +121,7 @@ export APISERVER_JWT_SECRET_KEY="당신의_비밀_키"
 
 1. 포크한 저장소를 로컬에 클론:
 ```bash
-git clone https://github.com/your-github-username/mcp-gateway.git
+git clone https://github.com/your-github-username/unla.git
 ```
 
 2. 업스트림 저장소 추가:

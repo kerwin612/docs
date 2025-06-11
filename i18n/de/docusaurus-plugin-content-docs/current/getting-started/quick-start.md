@@ -16,7 +16,7 @@ Ein-Klick-Bereitstellung:
 
 ```bash
 docker run -d \
-  --name mcp-gateway \
+  --name unla \
   -p 8080:80 \
   -p 5234:5234 \
   -p 5235:5235 \
@@ -48,7 +48,7 @@ Ein-Klick-Bereitstellung:
 
 ```bash
 docker run -d \
-  --name mcp-gateway \
+  --name unla \
   -p 8080:80 \
   -p 5234:5234 \
   -p 5235:5235 \
@@ -103,8 +103,8 @@ Wenn Sie eine feinere Kontrolle über die Konfiguration benötigen, können Sie 
 1. Erstellen Sie die erforderlichen Verzeichnisse und laden Sie die Konfigurationsdateien herunter:
 
 ```bash
-mkdir -p mcp-gateway/{configs,data}
-cd mcp-gateway/
+mkdir -p unla/{configs,data}
+cd unla/
 curl -sL https://raw.githubusercontent.com/amoylab/unla/refs/heads/main/configs/apiserver.yaml -o configs/apiserver.yaml
 curl -sL https://raw.githubusercontent.com/amoylab/unla/refs/heads/main/configs/mcp-gateway.yaml -o configs/mcp-gateway.yaml
 curl -sL https://raw.githubusercontent.com/amoylab/unla/refs/heads/main/.env.example -o .env.allinone
@@ -114,7 +114,7 @@ curl -sL https://raw.githubusercontent.com/amoylab/unla/refs/heads/main/.env.exa
 
 ```bash
 docker run -d \
-           --name mcp-gateway \
+           --name unla \
            -p 8080:80 \
            -p 5234:5234 \
            -p 5235:5235 \

@@ -9,7 +9,7 @@ MCP Gateway propose deux méthodes de déploiement :
 ### Registres d'images
 
 Les images sont publiées dans les registres suivants :
-- Docker Hub : `docker.io/ifuryst/mcp-gateway-*`
+- Docker Hub : `docker.io/ifuryst/unla-*`
 - GitHub Container Registry : `ghcr.io/amoylab/unla/*`
 - Alibaba Cloud Container Registry : `registry.ap-southeast-1.aliyuncs.com/amoylab/unla-*`
 
@@ -26,27 +26,27 @@ Les images sont publiées dans les registres suivants :
 
 ```bash
 # Version All-in-One
-docker pull docker.io/ifuryst/mcp-gateway-allinone:latest
+docker pull docker.io/ifuryst/unla-allinone:latest
 docker pull ghcr.io/amoylab/unla/allinone:latest
 docker pull registry.ap-southeast-1.aliyuncs.com/amoylab/unla-allinone:latest
 
 # API Server
-docker pull docker.io/ifuryst/mcp-gateway-apiserver:latest
+docker pull docker.io/ifuryst/unla-apiserver:latest
 docker pull ghcr.io/amoylab/unla/apiserver:latest
 docker pull registry.ap-southeast-1.aliyuncs.com/amoylab/unla-apiserver:latest
 
 # MCP Gateway
-docker pull docker.io/ifuryst/mcp-gateway-mcp-gateway:latest
+docker pull docker.io/ifuryst/unla-mcp-gateway:latest
 docker pull ghcr.io/amoylab/unla/mcp-gateway:latest
 docker pull registry.ap-southeast-1.aliyuncs.com/amoylab/unla-mcp-gateway:latest
 
 # Mock User Service
-docker pull docker.io/ifuryst/mcp-gateway-mock-server:latest
+docker pull docker.io/ifuryst/unla-mock-server:latest
 docker pull ghcr.io/amoylab/unla/mock-server:latest
 docker pull registry.ap-southeast-1.aliyuncs.com/amoylab/unla-mock-server:latest
 
 # Web Frontend
-docker pull docker.io/ifuryst/mcp-gateway-web:latest
+docker pull docker.io/ifuryst/unla-web:latest
 docker pull ghcr.io/amoylab/unla/web:latest
 docker pull registry.ap-southeast-1.aliyuncs.com/amoylab/unla-web:latest
 ```
@@ -84,8 +84,8 @@ Il est recommandé de monter les répertoires suivants :
 1. Créez les répertoires nécessaires et téléchargez les fichiers de configuration :
 
 ```bash
-mkdir -p mcp-gateway/{configs,data}
-cd mcp-gateway/
+mkdir -p unla/{configs,data}
+cd unla/
 curl -sL https://raw.githubusercontent.com/amoylab/unla/refs/heads/main/configs/apiserver.yaml -o configs/apiserver.yaml
 curl -sL https://raw.githubusercontent.com/amoylab/unla/refs/heads/main/configs/mcp-gateway.yaml -o configs/mcp-gateway.yaml
 curl -sL https://raw.githubusercontent.com/amoylab/unla/refs/heads/main/.env.example -o .env.allinone
@@ -103,7 +103,7 @@ curl -sL https://raw.githubusercontent.com/amoylab/unla/refs/heads/main/.env.exa
 ```bash
 # Utiliser le registre Alibaba Cloud (recommandé pour les serveurs/appareils en Chine)
 docker run -d \
-           --name mcp-gateway \
+           --name unla \
            -p 8080:80 \
            -p 5234:5234 \
            -p 5235:5235 \
@@ -118,7 +118,7 @@ docker run -d \
 
 # Utiliser GitHub Container Registry
 docker run -d \
-           --name mcp-gateway \
+           --name unla \
            -p 8080:80 \
            -p 5234:5234 \
            -p 5235:5235 \

@@ -38,7 +38,7 @@ git clone https://github.com/आपका-github-उपयोगकर्ता-
 
 परियोजना निर्देशिका में प्रवेश करें:
 ```bash
-cd mcp-gateway
+cd unla
 ```
 
 निर्भरताएँ स्थापित करें:
@@ -114,7 +114,7 @@ export APISERVER_JWT_SECRET_KEY="आपकी_गुप्त_कुंजी"
 
 1. अपने फोर्क रिपॉजिटरी को स्थानीय रूप से क्लोन करें:
 ```bash
-git clone https://github.com/your-github-username/mcp-gateway.git
+git clone https://github.com/your-github-username/unla.git
 ```
 
 2. अपस्ट्रीम रिपॉजिटरी जोड़ें:

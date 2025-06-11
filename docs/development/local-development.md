@@ -31,14 +31,14 @@ MCP Gateway 项目由以下几个核心组件组成：
 克隆你 fork 的仓库到本地：
 
 ```bash
-git clone https://github.com/your-github-username/mcp-gateway.git
+git clone https://github.com/your-github-username/unla.git
 ```
 
 ### 3. 初始化环境依赖
 
 进入项目目录：
 ```bash
-cd mcp-gateway
+cd unla
 ```
 
 安装依赖：
@@ -125,7 +125,7 @@ export APISERVER_JWT_SECRET_KEY="your_secret_key"
 
 1. 克隆你的 fork 仓库到本地：
 ```bash
-git clone https://github.com/your-github-username/mcp-gateway.git
+git clone https://github.com/your-github-username/unla.git
 ```
 
 2. 添加上游仓库：

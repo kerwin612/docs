@@ -8,8 +8,8 @@
 1. 创建必要的目录并下载配置文件和二进制：
 
 ```bash
-mkdir -p mcp-gateway/{configs,data}
-cd mcp-gateway/
+mkdir -p unla/{configs,data}
+cd unla/
 curl -sL https://raw.githubusercontent.com/amoylab/unla/refs/heads/main/configs/apiserver.yaml -o configs/apiserver.yaml
 curl -sL https://raw.githubusercontent.com/amoylab/unla/refs/heads/main/configs/mcp-gateway.yaml -o configs/mcp-gateway.yaml
 curl -sL https://raw.githubusercontent.com/amoylab/unla/refs/heads/main/.env.example -o .env

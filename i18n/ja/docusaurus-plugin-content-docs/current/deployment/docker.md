@@ -9,7 +9,7 @@ MCP Gatewayは2つのデプロイ方法を提供しています：
 ### イメージリポジトリ
 
 イメージは以下のレジストリに公開されています：
-- Docker Hub: `docker.io/ifuryst/mcp-gateway-*`
+- Docker Hub: `docker.io/ifuryst/unla-*`
 - GitHub Container Registry: `ghcr.io/amoylab/unla/*`
 - 阿里云容器镜像服务: `registry.ap-southeast-1.aliyuncs.com/amoylab/unla-*`
 
@@ -26,27 +26,27 @@ MCP Gatewayは2つのデプロイ方法を提供しています：
 
 ```bash
 # All-in-Oneバージョン
-docker pull docker.io/ifuryst/mcp-gateway-allinone:latest
+docker pull docker.io/ifuryst/unla-allinone:latest
 docker pull ghcr.io/amoylab/unla/allinone:latest
 docker pull registry.ap-southeast-1.aliyuncs.com/amoylab/unla-allinone:latest
 
 # API Server
-docker pull docker.io/ifuryst/mcp-gateway-apiserver:latest
+docker pull docker.io/ifuryst/unla-apiserver:latest
 docker pull ghcr.io/amoylab/unla/apiserver:latest
 docker pull registry.ap-southeast-1.aliyuncs.com/amoylab/unla-apiserver:latest
 
 # MCP Gateway
-docker pull docker.io/ifuryst/mcp-gateway-mcp-gateway:latest
+docker pull docker.io/ifuryst/unla-mcp-gateway:latest
 docker pull ghcr.io/amoylab/unla/mcp-gateway:latest
 docker pull registry.ap-southeast-1.aliyuncs.com/amoylab/unla-mcp-gateway:latest
 
 # Mock User Service
-docker pull docker.io/ifuryst/mcp-gateway-mock-server:latest
+docker pull docker.io/ifuryst/unla-mock-server:latest
 docker pull ghcr.io/amoylab/unla/mock-server:latest
 docker pull registry.ap-southeast-1.aliyuncs.com/amoylab/unla-mock-server:latest
 
 # Web Frontend
-docker pull docker.io/ifuryst/mcp-gateway-web:latest
+docker pull docker.io/ifuryst/unla-web:latest
 docker pull ghcr.io/amoylab/unla/web:latest
 docker pull registry.ap-southeast-1.aliyuncs.com/amoylab/unla-web:latest
 ```
@@ -84,8 +84,8 @@ All-in-Oneデプロイはすべてのサービスを1つのコンテナにパッ
 1. 必要なディレクトリを作成し、設定ファイルをダウンロード：
 
 ```bash
-mkdir -p mcp-gateway/{configs,data}
-cd mcp-gateway/
+mkdir -p unla/{configs,data}
+cd unla/
 curl -sL https://raw.githubusercontent.com/amoylab/unla/refs/heads/main/configs/apiserver.yaml -o configs/apiserver.yaml
 curl -sL https://raw.githubusercontent.com/amoylab/unla/refs/heads/main/configs/mcp-gateway.yaml -o configs/mcp-gateway.yaml
 curl -sL https://raw.githubusercontent.com/amoylab/unla/refs/heads/main/.env.example -o .env.allinone
@@ -103,7 +103,7 @@ curl -sL https://raw.githubusercontent.com/amoylab/unla/refs/heads/main/.env.exa
 ```bash
 # 阿里云レジストリを使用（中国内のサーバー/デバイスに推奨）
 docker run -d \
-           --name mcp-gateway \
+           --name unla \
            -p 8080:80 \
            -p 5234:5234 \
            -p 5235:5235 \
@@ -118,7 +118,7 @@ docker run -d \
 
 # GitHub Container Registryを使用
 docker run -d \
-           --name mcp-gateway \
+           --name unla \
            -p 8080:80 \
            -p 5234:5234 \
            -p 5235:5235 \

@@ -38,7 +38,7 @@ git clone https://github.com/あなたのgithubユーザー名/mcp-gateway.git
 
 プロジェクトディレクトリに入ります：
 ```bash
-cd mcp-gateway
+cd unla
 ```
 
 依存関係をインストールします：
@@ -121,7 +121,7 @@ export APISERVER_JWT_SECRET_KEY="あなたのシークレットキー"
 
 1. フォークしたリポジトリをローカルにクローン：
 ```bash
-git clone https://github.com/your-github-username/mcp-gateway.git
+git clone https://github.com/your-github-username/unla.git
 ```
 
 2. アップストリームリポジトリの追加：

@@ -38,7 +38,7 @@ git clone https://github.com/votre-nom-utilisateur-github/mcp-gateway.git
 
 Entrez dans le répertoire du projet :
 ```bash
-cd mcp-gateway
+cd unla
 ```
 
 Installez les dépendances :
@@ -121,7 +121,7 @@ Avant de commencer à développer de nouvelles fonctionnalités ou à corriger d
 
 1. Clonez votre dépôt fork localement :
 ```bash
-git clone https://github.com/your-github-username/mcp-gateway.git
+git clone https://github.com/your-github-username/unla.git
 ```
 
 2. Ajoutez le dépôt upstream :

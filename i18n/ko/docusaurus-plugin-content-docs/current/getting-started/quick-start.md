@@ -16,7 +16,7 @@ export SUPER_ADMIN_PASSWORD="297df52fbc321ebf7198d497fe1c9206PlsChangeMe"
 
 ```bash
 docker run -d \
-  --name mcp-gateway \
+  --name unla \
   -p 8080:80 \
   -p 5234:5234 \
   -p 5235:5235 \
@@ -48,7 +48,7 @@ export SUPER_ADMIN_PASSWORD="297df52fbc321ebf7198d497fe1c9206PlsChangeMe"
 
 ```bash
 docker run -d \
-  --name mcp-gateway \
+  --name unla \
   -p 8080:80 \
   -p 5234:5234 \
   -p 5235:5235 \
@@ -103,8 +103,8 @@ MCP 클라이언트에서 `/sse` 또는 `/mcp`로 끝나는 URL을 설정하면 
 1. 필요한 디렉토리 생성 및 설정 파일 다운로드:
 
 ```bash
-mkdir -p mcp-gateway/{configs,data}
-cd mcp-gateway/
+mkdir -p unla/{configs,data}
+cd unla/
 curl -sL https://raw.githubusercontent.com/amoylab/unla/refs/heads/main/configs/apiserver.yaml -o configs/apiserver.yaml
 curl -sL https://raw.githubusercontent.com/amoylab/unla/refs/heads/main/configs/mcp-gateway.yaml -o configs/mcp-gateway.yaml
 curl -sL https://raw.githubusercontent.com/amoylab/unla/refs/heads/main/.env.example -o .env.allinone
@@ -114,7 +114,7 @@ curl -sL https://raw.githubusercontent.com/amoylab/unla/refs/heads/main/.env.exa
 
 ```bash
 docker run -d \
-           --name mcp-gateway \
+           --name unla \
            -p 8080:80 \
            -p 5234:5234 \
            -p 5235:5235 \
